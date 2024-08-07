@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,6 +16,12 @@ class UsersTableSeeder extends Seeder
     {
         // Obtener todos los roles
         $roles = DB::table('roles')->pluck('id_rol')->toArray();
+
+        if (empty($roles)) {
+            // Si no hay roles, no insertar ningún usuario
+            $this->command->info('No hay roles disponibles para asignar a usuarios.');
+            return;
+        }
 
         // Insertar usuarios
         DB::table('users')->insert([
@@ -38,4 +43,5 @@ class UsersTableSeeder extends Seeder
         ]);
     }
 }
+
 

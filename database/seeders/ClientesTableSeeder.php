@@ -17,6 +17,12 @@ class ClientesTableSeeder extends Seeder
         // Obtener todos los usuarios
         $usuarios = DB::table('users')->pluck('id_usu')->toArray();
 
+        if (empty($usuarios)) {
+            // Si no hay usuarios, no insertar ningún cliente
+            $this->command->info('No hay usuarios disponibles para asignar a clientes.');
+            return;
+        }
+
         // Insertar clientes
         DB::table('clientes')->insert([
             [
@@ -37,3 +43,4 @@ class ClientesTableSeeder extends Seeder
         ]);
     }
 }
+

@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Crear Nuevo Role</h1>
+    <script src="{{ asset('js/indexrol.js') }}" defer></script>
     <form action="{{ route('roles.store') }}" method="POST">
         @csrf
         <label for="nombre_rol">Nombre del role:</label>

@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Crear Nuevo Usuario</h1>
+    <script src="{{ asset('js/indexusu.js') }}" defer></script>
     <form action="{{ route('users.store') }}" method="POST">
         @csrf
         <label for="nombre_usu">Nombre:</label>

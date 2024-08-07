@@ -5,6 +5,7 @@
 </head>
 <body>
     <h1>Crear Nuevo Cliente</h1>
+    <script src="{{ asset('js/indexcli.js') }}" defer></script>
     <form action="{{ route('clientes.store') }}" method="POST">
         @csrf
         <label for="nombre_cli">Nombre:</label>

@@ -5,7 +5,6 @@
 </head>
 <body>
     <h1>Crear Nuevo Cliente</h1>
-    <script src="{{ asset('js/indexcli.js') }}" defer></script>
     <form action="{{ route('clientes.store') }}" method="POST">
         @csrf
         <label for="nombre_cli">Nombre:</label>
@@ -23,6 +22,6 @@
         <br>
         <button type="submit">Crear Cliente</button>
     </form>
-    <a href="{{ route('clientes.index') }}">Volver a la lista</a>
+    <script src="{[asset('js/index.js')}}">Volver a la lista</script>
 </body>
 </html>

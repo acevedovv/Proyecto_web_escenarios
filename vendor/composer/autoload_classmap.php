@@ -11,6 +11,7 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\Escenario_DeportivoController' => $baseDir . '/app/Http/Controllers/Escenario_DeportivoController.php',
     'App\\Http\\Controllers\\FuncionarioController' => $baseDir . '/app/Http/Controllers/FuncionarioController.php',
+    'App\\Http\\Controllers\\ReservaController' => $baseDir . '/app/Http/Controllers/ReservaController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',

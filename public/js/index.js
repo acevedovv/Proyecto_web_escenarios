@@ -1,10 +1,22 @@
+// public/js/index.js
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtener el formulario
+    var form = document.getElementById('clienteForm');
+    
+    // Añadir el evento de submit al formulario
+    form.addEventListener('submit', function(event) {
+        validateClienteForm(event);
+    });
+});
+
 // Función para validar el formulario de cliente
 function validateClienteForm(event) {
     event.preventDefault(); // Prevenir el envío del formulario
 
     // Obtener los valores de los campos del formulario
-    var nombre = document.getElementById('nombre_cli').value;
-    var numero = document.getElementById('num_cli').value;
+    var nombre = document.getElementById('nombre_cli').value.trim();
+    var numero = document.getElementById('num_cli').value.trim();
     var usuario = document.getElementById('id_usu').value;
     var errorMessage = "";
 
@@ -94,10 +106,3 @@ function validateUsuarioForm(event) {
     }
 }
 
-// Asignar la función de validación al evento submit del formulario
-document.addEventListener('DOMContentLoaded', function() {
-    var form = document.getElementById('clienteForm');
-    if (form) {
-        form.addEventListener('submit', validateClienteForm);
-    }
-});

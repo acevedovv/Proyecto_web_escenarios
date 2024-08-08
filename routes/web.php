@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClienteController;
-use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RolController;
 
 //--------------------Rutas para Clientes
@@ -24,34 +24,34 @@ Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('cli
 Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
 
 // Actualizar un cliente existente
-Route::put('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
+Route::post('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
 
 // Eliminar un cliente existente
 Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
 //---------------------- Rutas para Usuarios
-Route::resource('usuarios', UsuarioController::class);
+Route::resource('usuarios', UserController::class);
 
 // Mostrar lista de usuarios
-Route::get('/usuarios', [UsuarioController::class, 'index'])->name('usuarios.index');
+Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
 
 // Mostrar formulario para crear un nuevo usuario
-Route::get('/usuarios/create', [UsuarioController::class, 'create'])->name('usuarios.create');
+Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');
 
 // Guardar un nuevo usuario
-Route::post('/usuarios', [UsuarioController::class, 'store'])->name('usuarios.store');
+Route::post('/usuarios', [UserController::class, 'store'])->name('usuarios.store');
 
 // Mostrar un usuario específico
-Route::get('/usuarios/{usuario}', [UsuarioController::class, 'show'])->name('usuarios.show');
+Route::get('/usuarios/{usuario}', [UserController::class, 'show'])->name('usuarios.show');
 
 // Mostrar formulario para editar un usuario existente
-Route::get('/usuarios/{usuario}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+Route::get('/usuarios/{usuario}/edit', [UserController::class, 'edit'])->name('usuarios.edit');
 
 // Actualizar un usuario existente
-Route::put('/usuarios/{usuario}', [UsuarioController::class, 'update'])->name('usuarios.update');
+Route::post('/usuarios/{usuario}', [UserController::class, 'update'])->name('usuarios.update');
 
 // Eliminar un usuario existente
-Route::delete('/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+Route::delete('/usuarios/{usuario}', [UserController::class, 'destroy'])->name('usuarios.destroy');
 
 //----------------------Rutas para Roles
 Route::resource('roles', RolController::class);
@@ -72,7 +72,7 @@ Route::get('/roles/{rol}', [RolController::class, 'show'])->name('roles.show');
 Route::get('/roles/{rol}/edit', [RolController::class, 'edit'])->name('roles.edit');
 
 // Actualizar un rol existente
-Route::put('/roles/{rol}', [RolController::class, 'update'])->name('roles.update');
+Route::post('/roles/{rol}', [RolController::class, 'update'])->name('roles.update');
 
 // Eliminar un rol existente
 Route::delete('/roles/{rol}', [RolController::class, 'destroy'])->name('roles.destroy');

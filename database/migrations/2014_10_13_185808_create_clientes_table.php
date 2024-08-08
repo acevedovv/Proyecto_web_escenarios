@@ -14,14 +14,14 @@ class CreateClientesTable extends Migration
     public function up()
     {
         Schema::create('clientes', function (Blueprint $table) {
-            $table->id('id_cli');
+            $table->id();
             $table->string('nombre_cli');
             $table->string('num_cli');
-            $table->unsignedBigInteger('id_usu');
+            $table->unsignedBigInteger();
             $table->timestamps();
 
             // Definir la relación con la tabla roles
-            $table->foreign('id_usu')->references('id_usu')->on('users');
+            $table->foreign()->references()->on('users');
         });
     }
 

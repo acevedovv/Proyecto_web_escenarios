@@ -22,12 +22,6 @@ class User extends Authenticatable
         'id_rol',
     ];
 
-    // Los atributos que deberían ser ocultados para arrays
-    protected $hidden = [
-        'created_at',
-        'updated_at',
-    ];
-
     // Define la relación con la tabla 'roles'
     public function role()
     {

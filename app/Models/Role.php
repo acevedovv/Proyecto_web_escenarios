@@ -18,12 +18,6 @@ class Role extends Model
         'desc_rol',
     ];
 
-    // Los atributos que deberían ser ocultados para arrays
-    protected $hidden = [
-        'created_at',
-        'updated_at',
-    ];
-
     // Define la relación con la tabla 'users'
     public function users()
     {

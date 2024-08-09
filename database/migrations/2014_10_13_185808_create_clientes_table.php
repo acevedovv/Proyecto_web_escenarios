@@ -17,11 +17,11 @@ class CreateClientesTable extends Migration
             $table->id();
             $table->string('nombre_cli');
             $table->string('num_cli');
-            $table->unsignedBigInteger();
+            $table->unsignedBigInteger('user_id'); // Define the foreign key column
             $table->timestamps();
 
-            // Definir la relación con la tabla roles
-            $table->foreign()->references()->on('users');
+            // Define the foreign key relationship
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -35,3 +35,4 @@ class CreateClientesTable extends Migration
         Schema::dropIfExists('clientes');
     }
 }
+

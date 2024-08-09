@@ -19,6 +19,12 @@ class Cliente extends Model
         'id_usu',
     ];
 
+    // Los atributos que deberían ser ocultados para arrays
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     // Define la relación con la tabla 'users'
     public function user()
     {

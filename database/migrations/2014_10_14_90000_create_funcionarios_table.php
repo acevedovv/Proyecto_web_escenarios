@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateClientesTable extends Migration
+class CreateFuncionariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('clientes', function (Blueprint $table) {
-            $table->id('id_cli');
-            $table->string('nombre_cli');
-            $table->string('num_cli');
-            $table->unsignedBigInteger('user_id'); // Define the foreign key column
+        Schema::create('funcionarios', function (Blueprint $table) {
+            $table->id('id_fun');
+            $table->string('nombre_fun');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
-
-            // Define the foreign key relationship
+            // Definir la relación con la tabla usuarios
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -32,7 +30,6 @@ class CreateClientesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('funcionarios');
     }
 }
-

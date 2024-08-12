@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\EscenarioDeportivoController;
+
 
 //--------------------Rutas para Clientes
 Route::resource('clientes', ClienteController::class);
@@ -76,3 +80,28 @@ Route::post('/roles/{rol}', [RoleController::class, 'update'])->name('roles.upda
 
 // Eliminar un rol existente
 Route::delete('/roles/{rol}', [RoleController::class, 'destroy'])->name('roles.destroy');
+
+//----------------------Rutas para Funcionarios
+
+Route::resource('funcionarios', FuncionarioController::class);
+
+// Mostrar lista de roles
+Route::get('/funcionarios', [FuncionarioController::class, 'index'])->name('funcionarios.index');
+
+
+//----------------------Rutas para Escenarios Deportivos
+
+#Route::resource('escenarios_deportivos', EscenarioDeportivoController::class);
+
+// Mostrar lista de escenarios deportivos
+
+#Route::get('/escenarios_deportivos', [EscenarioDeportivoController::class, 'index'])->name('escenarios_deportivos.index');
+
+//----------------------Rutas para Reservas
+
+#Route::resource('reservas', ReservaController::class);
+
+// Mostrar lista de reservas
+
+#Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
+

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserva;
+use App\Models\Cliente;  
+use App\Models\EscenarioDeportivo;  
 use Illuminate\Http\Request;
 
 class ReservaController extends Controller
@@ -15,7 +17,12 @@ class ReservaController extends Controller
 
     public function create()
     {
-        return view('reservas.create');
+        // Obtener todos los clientes y escenarios deportivos
+        $clientes = Cliente::all();
+        $escenariosDeportivos = EscenarioDeportivo::all();
+
+        // Pasar los clientes y escenarios deportivos a la vista
+        return view('reservas.create', compact('clientes', 'escenariosDeportivos'));
     }
 
     public function store(Request $request)
@@ -37,9 +44,19 @@ class ReservaController extends Controller
         return view('reservas.show', compact('reserva'));
     }
 
-    public function edit(Reserva $reserva)
+    public function edit($id)
     {
-        return view('reservas.edit', compact('reserva'));
+        // Obtén la reserva que se va a editar
+        $reserva = Reserva::findOrFail($id);
+
+        // Obtén todos los clientes
+        $clientes = Cliente::all();
+
+        // Obtén todos los escenarios deportivos
+        $escenariosDeportivos = EscenarioDeportivo::all();
+
+        // Pasa la reserva, los clientes y los escenarios deportivos a la vista
+        return view('reservas.edit', compact('reserva', 'clientes', 'escenariosDeportivos'));
     }
 
     public function update(Request $request, Reserva $reserva)

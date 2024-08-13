@@ -2,84 +2,64 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Reserva;
 use Illuminate\Http\Request;
 
 class ReservaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $reservas = Reserva::all();
+        return view('reservas.index', compact('reservas'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('reservas.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'fecha_res' => 'required|date',
+            'fecha_dev' => 'required|date|after:fecha_res',
+            'id_cli' => 'required|exists:clientes,id_cli',
+            'id_esc' => 'required|exists:escenarios_deportivos,id_esc',
+        ]);
+
+        Reserva::create($request->all());
+
+        return redirect()->route('reservas.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show(Reserva $reserva)
     {
-        //
+        return view('reservas.show', compact('reserva'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(Reserva $reserva)
     {
-        //
+        return view('reservas.edit', compact('reserva'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request, Reserva $reserva)
     {
-        //
+        $request->validate([
+            'fecha_res' => 'required|date',
+            'fecha_dev' => 'required|date|after:fecha_res',
+            'id_cli' => 'required|exists:clientes,id_cli',
+            'id_esc' => 'required|exists:escenarios_deportivos,id_esc',
+        ]);
+
+        $reserva->update($request->all());
+
+        return redirect()->route('reservas.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Reserva $reserva)
     {
-        //
+        $reserva->delete();
+
+        return redirect()->route('reservas.index');
     }
 }

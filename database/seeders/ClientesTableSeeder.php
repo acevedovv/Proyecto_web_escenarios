@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\DB;
 class ClientesTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Sembrar la base de datos.
      *
      * @return void
      */
     public function run()
     {
         // Obtener todos los usuarios
-        $usuarios = DB::table('users')->pluck('id_usu')->toArray();
+        $usuarios = DB::table('users')->pluck('id')->toArray(); // Usa 'id' en lugar de 'id_usu'
 
         if (empty($usuarios)) {
             // Si no hay usuarios, no insertar ningún cliente
@@ -28,19 +28,20 @@ class ClientesTableSeeder extends Seeder
             [
                 'nombre_cli' => 'Carlos Sánchez',
                 'num_cli' => '555123456',
-                'id_usu' => $usuarios[array_rand($usuarios)], // Selecciona un usuario aleatorio
+                'user_id' => $usuarios[array_rand($usuarios)], // Usa 'user_id'
             ],
             [
                 'nombre_cli' => 'María Fernández',
                 'num_cli' => '555654321',
-                'id_usu' => $usuarios[array_rand($usuarios)], // Selecciona un usuario aleatorio
+                'user_id' => $usuarios[array_rand($usuarios)], // Usa 'user_id'
             ],
             [
                 'nombre_cli' => 'Pedro López',
                 'num_cli' => '555987654',
-                'id_usu' => $usuarios[array_rand($usuarios)], // Selecciona un usuario aleatorio
+                'user_id' => $usuarios[array_rand($usuarios)], // Usa 'user_id'
             ],
         ]);
     }
 }
+
 

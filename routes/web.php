@@ -1,9 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\RolController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\EscenarioDeportivoController;
+
 
 //--------------------Rutas para Clientes
 Route::resource('clientes', ClienteController::class);
@@ -54,25 +58,50 @@ Route::post('/usuarios/{usuario}', [UserController::class, 'update'])->name('usu
 Route::delete('/usuarios/{usuario}', [UserController::class, 'destroy'])->name('usuarios.destroy');
 
 //----------------------Rutas para Roles
-Route::resource('roles', RolController::class);
+Route::resource('roles', RoleController::class);
 
 // Mostrar lista de roles
-Route::get('/roles', [RolController::class, 'index'])->name('roles.index');
+Route::get('/roles', [RoleController::class, 'index'])->name('roles.index');
 
 // Mostrar formulario para crear un nuevo rol
-Route::get('/roles/create', [RolController::class, 'create'])->name('roles.create');
+Route::get('/roles/create', [RoleController::class, 'create'])->name('roles.create');
 
 // Guardar un nuevo rol
-Route::post('/roles', [RolController::class, 'store'])->name('roles.store');
+Route::post('/roles', [RoleController::class, 'store'])->name('roles.store');
 
 // Mostrar un rol específico
-Route::get('/roles/{rol}', [RolController::class, 'show'])->name('roles.show');
+Route::get('/roles/{rol}', [RoleController::class, 'show'])->name('roles.show');
 
 // Mostrar formulario para editar un rol existente
-Route::get('/roles/{rol}/edit', [RolController::class, 'edit'])->name('roles.edit');
+Route::get('/roles/{rol}/edit', [RoleController::class, 'edit'])->name('roles.edit');
 
 // Actualizar un rol existente
-Route::post('/roles/{rol}', [RolController::class, 'update'])->name('roles.update');
+Route::post('/roles/{rol}', [RoleController::class, 'update'])->name('roles.update');
 
 // Eliminar un rol existente
-Route::delete('/roles/{rol}', [RolController::class, 'destroy'])->name('roles.destroy');
+Route::delete('/roles/{rol}', [RoleController::class, 'destroy'])->name('roles.destroy');
+
+//----------------------Rutas para Funcionarios
+
+Route::resource('funcionarios', FuncionarioController::class);
+
+// Mostrar lista de roles
+Route::get('/funcionarios', [FuncionarioController::class, 'index'])->name('funcionarios.index');
+
+
+//----------------------Rutas para Escenarios Deportivos
+
+#Route::resource('escenarios_deportivos', EscenarioDeportivoController::class);
+
+// Mostrar lista de escenarios deportivos
+
+#Route::get('/escenarios_deportivos', [EscenarioDeportivoController::class, 'index'])->name('escenarios_deportivos.index');
+
+//----------------------Rutas para Reservas
+
+#Route::resource('reservas', ReservaController::class);
+
+// Mostrar lista de reservas
+
+#Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
+

@@ -29,4 +29,7 @@ class Funcionario extends Model
     {
         return $this->hasMany(EscenarioDeportivo::class, 'id_fun');
     }
+
+    // Especifica la clave primaria
+    protected $primaryKey = 'id_fun';
 }

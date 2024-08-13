@@ -110,14 +110,31 @@ Route::delete('/funcionarios/{funcionario}', [FuncionarioController::class, 'des
 Route::resource('escenarios_deportivos', EscenarioDeportivoController::class);
 
 // Mostrar lista de escenarios deportivos
-
 Route::get('/escenarios_deportivos', [EscenarioDeportivoController::class, 'index'])->name('escenarios_deportivos.index');
+
+// Mostrar formulario para crear un nuevo escenario deportivo
+Route::get('/escenarios_deportivos/create', [EscenarioDeportivoController::class, 'create'])->name('escenarios_deportivos.create');
+
+// Guardar un nuevo escenario deportivo
+Route::post('/escenarios_deportivos', [EscenarioDeportivoController::class, 'store'])->name('escenarios_deportivos.store');
+
+// Mostrar un escenario deportivo específico
+Route::get('/escenarios_deportivos/{escenarioDeportivo}', [EscenarioDeportivoController::class, 'show'])->name('escenarios_deportivos.show');
+
+// Mostrar formulario para editar un escenario deportivo existente
+Route::get('/escenarios_deportivos/{escenarioDeportivo}/edit', [EscenarioDeportivoController::class, 'edit'])->name('escenarios_deportivos.edit');
+
+// Actualizar un escenario deportivo existente
+Route::post('/escenarios_deportivos/{escenarioDeportivo}', [EscenarioDeportivoController::class, 'update'])->name('escenarios_deportivos.update');
+
+// Eliminar un escenario deportivo existente
+Route::delete('/escenarios_deportivos/{escenarioDeportivo}', [EscenarioDeportivoController::class, 'destroy'])->name('escenarios_deportivos.destroy');
 
 //----------------------Rutas para Reservas
 
-#Route::resource('reservas', ReservaController::class);
+Route::resource('reservas', ReservaController::class);
 
 // Mostrar lista de reservas
 
-#Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
+Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
 

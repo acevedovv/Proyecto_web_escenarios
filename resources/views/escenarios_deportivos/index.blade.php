@@ -21,7 +21,7 @@
                 <tr>
                     <td>{{ $escenario->id_esc }}</td>
                     <td>{{ $escenario->nombre_esc }}</td>
-                    <td>{{ $escenario->fecha_dis->format('d/m/Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($escenario->fecha_dis)->format('Y-m-d') }}</td>
                     <td>{{ $escenario->funcionario->nombre_fun }}</td>
                     <td>
                         <a href="{{ route('escenarios_deportivos.show', $escenario->id_esc) }}">Ver</a>
@@ -38,5 +38,3 @@
     </table>
 </body>
 </html>
-
-

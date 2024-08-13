@@ -36,7 +36,7 @@ class FuncionarioController extends Controller
 
     public function show(Funcionario $funcionario)
     {
-        $funcionario = Funcionario::findOrFail($id_fun);
+        return view('funcionarios.show', compact('funcionario'));
     }
 
     public function edit($id_fun)

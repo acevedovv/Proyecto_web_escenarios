@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funcionario;
 use App\Models\EscenarioDeportivo;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class EscenarioDeportivoController extends Controller
 
     public function create()
     {
-        return view('escenarios_deportivos.create');
+        $funcionarios = Funcionario::all(); // Obtén todos los funcionarios
+        return view('escenarios_deportivos.create', compact('funcionarios'));
     }
 
     public function store(Request $request)
@@ -33,6 +35,8 @@ class EscenarioDeportivoController extends Controller
 
     public function show(EscenarioDeportivo $escenarioDeportivo)
     {
+        // Asegúrate de que el funcionario esté cargado
+        $escenarioDeportivo->load('funcionario');
         return view('escenarios_deportivos.show', compact('escenarioDeportivo'));
     }
 

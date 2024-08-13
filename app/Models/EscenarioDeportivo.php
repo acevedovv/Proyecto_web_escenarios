@@ -11,6 +11,7 @@ class EscenarioDeportivo extends Model
     
     // La tabla asociada al modelo
     protected $table = 'escenarios_deportivos';
+    protected $primaryKey = 'id_esc';
 
     // Los atributos que se pueden asignar masivamente
     protected $fillable = [

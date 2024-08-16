@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User; 
 use App\Models\Funcionario;
 use Illuminate\Http\Request;
 
@@ -15,7 +15,11 @@ class FuncionarioController extends Controller
 
     public function create()
     {
-        return view('funcionarios.create');
+        // Obtén todos los usuarios desde la base de datos
+        $users = User::all(); 
+
+         // Pasa la variable $users a la vista 'funcionarios.create'
+        return view('funcionarios.create', compact('users'));
     }
 
     public function store(Request $request)
@@ -35,9 +39,16 @@ class FuncionarioController extends Controller
         return view('funcionarios.show', compact('funcionario'));
     }
 
-    public function edit(Funcionario $funcionario)
+    public function edit($id_fun)
     {
-        return view('funcionarios.edit', compact('funcionario'));
+        // Buscar el funcionario por su id
+        $funcionario = Funcionario::findOrFail($id_fun);
+
+        // Obtener todos los usuarios para llenar el dropdown o la lista en la vista
+        $users = User::all();
+
+        // Pasar el funcionario y los usuarios a la vista
+        return view('funcionarios.edit', compact('funcionario', 'users'));
     }
 
     public function update(Request $request, Funcionario $funcionario)

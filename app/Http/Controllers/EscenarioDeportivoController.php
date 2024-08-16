@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funcionario;
 use App\Models\EscenarioDeportivo;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class EscenarioDeportivoController extends Controller
 
     public function create()
     {
-        return view('escenarios_deportivos.create');
+        $funcionarios = Funcionario::all(); // Obtén todos los funcionarios
+        return view('escenarios_deportivos.create', compact('funcionarios'));
     }
 
     public function store(Request $request)
@@ -31,17 +33,28 @@ class EscenarioDeportivoController extends Controller
         return redirect()->route('escenarios_deportivos.index');
     }
 
-    public function show(EscenarioDeportivo $escenarioDeportivo)
+    public function show($id)
     {
+        // Encuentra el escenario deportivo por su ID
+        $escenarioDeportivo = EscenarioDeportivo::findOrFail($id);
+        // Pasar el modelo a la vista
         return view('escenarios_deportivos.show', compact('escenarioDeportivo'));
     }
 
-    public function edit(EscenarioDeportivo $escenarioDeportivo)
+    public function edit($id)
     {
-        return view('escenarios_deportivos.edit', compact('escenarioDeportivo'));
+        // Encuentra el escenario deportivo por su ID
+        $escenarioDeportivo = EscenarioDeportivo::findOrFail($id);
+
+        // Obtén todos los funcionarios para llenar el dropdown o la lista en la vista
+        $funcionarios = Funcionario::all();
+
+        // Pasa el escenario deportivo y los funcionarios a la vista
+        return view('escenarios_deportivos.edit', compact('escenarioDeportivo', 'funcionarios'));
     }
 
-    public function update(Request $request, EscenarioDeportivo $escenarioDeportivo)
+
+    public function update(Request $request, $id)
     {
         $request->validate([
             'fecha_dis' => 'required|date',
@@ -49,15 +62,17 @@ class EscenarioDeportivoController extends Controller
             'id_fun' => 'required|exists:funcionarios,id_fun',
         ]);
 
+        $escenarioDeportivo = EscenarioDeportivo::findOrFail($id);
         $escenarioDeportivo->update($request->all());
 
-        return redirect()->route('escenarios_deportivos.index');
+        return redirect()->route('escenarios_deportivos.index')->with('success', 'Escenario Deportivo actualizado correctamente.');
     }
 
-    public function destroy(EscenarioDeportivo $escenarioDeportivo)
+    public function destroy($id)
     {
+        $escenarioDeportivo = EscenarioDeportivo::findOrFail($id);
         $escenarioDeportivo->delete();
 
-        return redirect()->route('escenarios_deportivos.index');
+        return redirect()->route('escenarios_deportivos.index')->with('success', 'Escenario Deportivo eliminado correctamente.');
     }
 }

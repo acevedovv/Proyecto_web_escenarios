@@ -11,6 +11,7 @@ class Cliente extends Model
 
     // El nombre de la tabla asociada
     protected $table = 'clientes';
+    protected $primaryKey = 'id_cli';
 
     // Los atributos que son asignables en masa
     protected $fillable = [

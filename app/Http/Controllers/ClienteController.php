@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\User; // Asegúrate de importar el modelo User
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -11,7 +12,7 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::with('user')->get();
-        return response()->json($clientes);
+        return view('clientes.index', ['clientes' => $clientes]);
     }
 
     // Mostrar un cliente específico
@@ -20,10 +21,17 @@ class ClienteController extends Controller
         $cliente = Cliente::with('user')->find($id);
 
         if (!$cliente) {
-            return response()->json(['message' => 'Cliente no encontrado'], 404);
+            return view('errors.404', ['message' => 'Cliente no encontrado']);
         }
 
-        return response()->json($cliente);
+        return view('clientes.show', ['cliente' => $cliente]);
+    }
+
+    // Mostrar el formulario para crear un nuevo cliente
+    public function create()
+    {
+        $users = User::all(); // Obtener todos los usuarios para el dropdown
+        return view('clientes.create', ['users' => $users]);
     }
 
     // Crear un nuevo cliente
@@ -34,10 +42,22 @@ class ClienteController extends Controller
             'num_cli' => 'required|string|max:255',
             'id_usu' => 'required|exists:users,id_usu',
         ]);
-
+    
         $cliente = Cliente::create($request->all());
+    
+        return redirect()->route('clientes.index')->with('success', 'Cliente creado exitosamente.');
+    }        
 
-        return response()->json($cliente, 201);
+    // Mostrar el formulario para editar un cliente existente
+    public function edit($id)
+    {
+        $cliente = Cliente::find($id);
+        if (!$cliente) {
+            return view('errors.404', ['message' => 'Cliente no encontrado']);
+        }
+
+        $users = User::all(); // Obtener todos los usuarios para el dropdown
+        return view('clientes.edit', ['cliente' => $cliente, 'users' => $users]);
     }
 
     // Actualizar un cliente existente
@@ -46,7 +66,7 @@ class ClienteController extends Controller
         $cliente = Cliente::find($id);
 
         if (!$cliente) {
-            return response()->json(['message' => 'Cliente no encontrado'], 404);
+            return view('errors.404', ['message' => 'Cliente no encontrado']);
         }
 
         $request->validate([
@@ -57,7 +77,7 @@ class ClienteController extends Controller
 
         $cliente->update($request->all());
 
-        return response()->json($cliente);
+        return redirect()->route('clientes.show', $cliente->id)->with('success', 'Cliente actualizado exitosamente.');
     }
 
     // Eliminar un cliente
@@ -66,12 +86,12 @@ class ClienteController extends Controller
         $cliente = Cliente::find($id);
 
         if (!$cliente) {
-            return response()->json(['message' => 'Cliente no encontrado'], 404);
+            return view('errors.404', ['message' => 'Cliente no encontrado']);
         }
 
         $cliente->delete();
 
-        return response()->json(['message' => 'Cliente eliminado exitosamente']);
+        return redirect()->route('clientes.index')->with('success', 'Cliente eliminado exitosamente.');
     }
 }
 

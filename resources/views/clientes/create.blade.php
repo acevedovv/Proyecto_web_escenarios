@@ -22,6 +22,6 @@
         <br>
         <button type="submit">Crear Cliente</button>
     </form>
-    <a href="{{ route('clientes.index') }}">Back to List</a>
+    <a href="{{ route('clientes.index') }}">Volver a la lista</a>
 </body>
 </html>

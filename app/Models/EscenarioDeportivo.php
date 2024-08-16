@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class EscenarioDeportivo extends Model
 {
     use HasFactory;
-
+    
     // La tabla asociada al modelo
     protected $table = 'escenarios_deportivos';
+    protected $primaryKey = 'id_esc';
 
     // Los atributos que se pueden asignar masivamente
     protected $fillable = [
@@ -19,10 +20,14 @@ class EscenarioDeportivo extends Model
         'id_fun',
     ];
 
+    protected $casts = [
+        'fecha_dis' => 'datetime',
+    ];
+
     // La relación con la tabla funcionarios
     public function funcionario()
     {
-        return $this->belongsTo(Funcionario::class, 'id_fun');
+        return $this->belongsTo(Funcionario::class, 'id_fun', 'id_fun');
     }
 
     // La relación con la tabla reservas
@@ -30,4 +35,5 @@ class EscenarioDeportivo extends Model
     {
         return $this->hasMany(Reserva::class, 'id_esc');
     }
+    
 }

@@ -21,8 +21,8 @@
             @foreach($reservas as $reserva)
                 <tr>
                     <td>{{ $reserva->id_res }}</td>
-                    <td>{{ $reserva->fecha_res->format('d/m/Y') }}</td>
-                    <td>{{ $reserva->fecha_dev->format('d/m/Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($reserva->fecha_res)->format('d/m/Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($reserva->fecha_dev)->format('d/m/Y') }}</td>
                     <td>{{ $reserva->cliente->nombre_cli }}</td>
                     <td>{{ $reserva->escenarioDeportivo->nombre_esc }}</td>
                     <td>

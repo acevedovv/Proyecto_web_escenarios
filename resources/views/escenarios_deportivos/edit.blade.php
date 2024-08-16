@@ -15,10 +15,10 @@
         <label for="fecha_dis">Fecha de Disponibilidad:</label>
         <input type="date" id="fecha_dis" name="fecha_dis" value="{{ old('fecha_dis', $escenarioDeportivo->fecha_dis->format('Y-m-d')) }}">
 
-        <label for="funcionario_id">Funcionario:</label>
-        <select id="funcionario_id" name="funcionario_id">
+        <label for="id_fun">Funcionario:</label>
+        <select id="id_fun" name="id_fun">
             @foreach($funcionarios as $funcionario)
-                <option value="{{ $funcionario->id }}" {{ $funcionario->id == $escenarioDeportivo->funcionario_id ? 'selected' : '' }}>
+                <option value="{{ $funcionario->id_fun }}" {{ $funcionario->id_fun == $escenarioDeportivo->id_fun ? 'selected' : '' }}>
                     {{ $funcionario->nombre_fun }}
                 </option>
             @endforeach

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\User; // Asegúrate de importar el modelo User
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -26,6 +27,13 @@ class ClienteController extends Controller
         return view('clientes.show', ['cliente' => $cliente]);
     }
 
+    // Mostrar el formulario para crear un nuevo cliente
+    public function create()
+    {
+        $users = User::all(); // Obtener todos los usuarios para el dropdown
+        return view('clientes.create', ['users' => $users]);
+    }
+
     // Crear un nuevo cliente
     public function store(Request $request)
     {
@@ -34,10 +42,22 @@ class ClienteController extends Controller
             'num_cli' => 'required|string|max:255',
             'id_usu' => 'required|exists:users,id_usu',
         ]);
-
+    
         $cliente = Cliente::create($request->all());
-
+    
         return redirect()->route('clientes.index')->with('success', 'Cliente creado exitosamente.');
+    }        
+
+    // Mostrar el formulario para editar un cliente existente
+    public function edit($id)
+    {
+        $cliente = Cliente::find($id);
+        if (!$cliente) {
+            return view('errors.404', ['message' => 'Cliente no encontrado']);
+        }
+
+        $users = User::all(); // Obtener todos los usuarios para el dropdown
+        return view('clientes.edit', ['cliente' => $cliente, 'users' => $users]);
     }
 
     // Actualizar un cliente existente

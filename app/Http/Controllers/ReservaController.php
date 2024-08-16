@@ -39,10 +39,12 @@ class ReservaController extends Controller
         return redirect()->route('reservas.index');
     }
 
-    public function show(Reserva $reserva)
+    public function show($id)
     {
-        return view('reservas.show', compact('reserva'));
+        $escenarioDeportivo = EscenarioDeportivo::find($id);
+        return view('reservas.show', compact('escenarioDeportivo'));
     }
+    
 
     public function edit($id)
     {

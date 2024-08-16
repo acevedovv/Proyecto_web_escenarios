@@ -14,6 +14,12 @@ class RoleController extends Controller
         return view('roles.index', compact('roles'));
     }
 
+    public function create()
+    {
+        // Solo retorna la vista para crear un nuevo rol
+        return view('roles.create');
+    }
+    
     // Mostrar un rol específico
     public function show($id)
     {

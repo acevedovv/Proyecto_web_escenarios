@@ -135,6 +135,22 @@ Route::delete('/escenarios_deportivos/{escenarioDeportivo}', [EscenarioDeportivo
 Route::resource('reservas', ReservaController::class);
 
 // Mostrar lista de reservas
-
 Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
 
+// Mostrar formulario para crear una nueva reserva
+Route::get('/reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
+
+// Guardar una nueva reserva
+Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
+
+// Mostrar una reserva específica
+Route::get('/reservas/{reserva}', [ReservaController::class, 'show'])->name('reservas.show');
+
+// Mostrar formulario para editar una reserva existente
+Route::get('/reservas/{reserva}/edit', [ReservaController::class, 'edit'])->name('reservas.edit');
+
+// Actualizar una reserva existente
+Route::post('/reservas/{reserva}', [ReservaController::class, 'update'])->name('reservas.update');
+
+// Eliminar una reserva existente
+Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');

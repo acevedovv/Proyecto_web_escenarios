@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('role')->get();
-        return response()->json($users);
+        return view('usuarios.index', ['users' => $users]);
     }
 
     // Mostrar un usuario específico
@@ -20,13 +20,21 @@ class UserController extends Controller
         $user = User::with('role')->find($id);
 
         if (!$user) {
-            return response()->json(['message' => 'User no encontrado'], 404);
+            return redirect()->route('usuarios.index')->with('error', 'Usuario no encontrado');
         }
 
-        return response()->json($user);
+        return view('usuarios.show', ['user' => $user]);
     }
 
-    // Crear un nuevo usuario
+    // Crear un nuevo usuario (Formulario)
+    public function create()
+    {
+        // Asumiendo que necesitas pasar los roles para el formulario de creación
+        $roles = \App\Models\Role::all();
+        return view('usuarios.create', ['roles' => $roles]);
+    }
+
+    // Guardar un nuevo usuario
     public function store(Request $request)
     {
         $request->validate([
@@ -35,9 +43,23 @@ class UserController extends Controller
             'id_rol' => 'required|exists:roles,id_rol',
         ]);
 
-        $user = User::create($request->all());
+        User::create($request->all());
 
-        return response()->json($user, 201);
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente');
+    }
+
+    // Editar un usuario existente (Formulario)
+    public function edit($id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect()->route('usuarios.index')->with('error', 'Usuario no encontrado');
+        }
+
+        // Asumiendo que necesitas pasar los roles para el formulario de edición
+        $roles = \App\Models\Role::all();
+        return view('usuarios.edit', ['user' => $user, 'roles' => $roles]);
     }
 
     // Actualizar un usuario existente
@@ -46,7 +68,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return response()->json(['message' => 'User no encontrado'], 404);
+            return redirect()->route('usuarios.index')->with('error', 'Usuario no encontrado');
         }
 
         $request->validate([
@@ -57,7 +79,7 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        return response()->json($user);
+        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente');
     }
 
     // Eliminar un usuario
@@ -66,11 +88,11 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return response()->json(['message' => 'User no encontrado'], 404);
+            return redirect()->route('usuarios.index')->with('error', 'Usuario no encontrado');
         }
 
         $user->delete();
 
-        return response()->json(['message' => 'User eliminado exitosamente']);
+        return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente');
     }
 }

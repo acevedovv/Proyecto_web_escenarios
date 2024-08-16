@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clientes</title>
 </head>
 <body>
-    <h1>Clientes</h1>
-    <a href="{{ url('clientes.create') }}">Agregar nuevo cliente</a>
-    <ul>
-        @foreach ($clientes as $cliente)
-            <li>
-                {{ $cliente->nombre_cli }} - {{ $cliente->num_cli }} - {{ $cliente->user->nombre_usu }}
-                <a href="{{ url('clientes.show', $cliente->id_cli) }}">Ver</a>
-                <a href="{{ url('clientes.edit', $cliente->id_cli) }}">Editar</a>
-                <form action="{{ url('clientes.destroy', $cliente->id_cli) }}" method="POST" style="display:inline;">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit">Delete</button>
-                </form>
-            </li>
-        @endforeach
-    </ul>
+    <h1>Lista de Clientes</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Numero</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($clientes as $cliente)
+                <tr>
+                    <td>{{ $cliente->nombre_cli }}</td>
+                    <td>{{ $cliente->num_cli }}</td>
+                    <td>
+                        @if ($cliente->user)
+                            {{ $cliente->user->nombre_usu }}
+                        @else
+                            Usuario no disponible
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 </body>
 </html>
+

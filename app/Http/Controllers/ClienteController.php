@@ -11,7 +11,7 @@ class ClienteController extends Controller
     public function index()
     {
         $clientes = Cliente::with('user')->get();
-        return response()->json($clientes);
+        return view('clientes.index', ['clientes' => $clientes]);
     }
 
     // Mostrar un cliente específico
@@ -20,10 +20,10 @@ class ClienteController extends Controller
         $cliente = Cliente::with('user')->find($id);
 
         if (!$cliente) {
-            return response()->json(['message' => 'Cliente no encontrado'], 404);
+            return view('errors.404', ['message' => 'Cliente no encontrado']);
         }
 
-        return response()->json($cliente);
+        return view('clientes.show', ['cliente' => $cliente]);
     }
 
     // Crear un nuevo cliente
@@ -37,7 +37,7 @@ class ClienteController extends Controller
 
         $cliente = Cliente::create($request->all());
 
-        return response()->json($cliente, 201);
+        return redirect()->route('clientes.index')->with('success', 'Cliente creado exitosamente.');
     }
 
     // Actualizar un cliente existente
@@ -46,7 +46,7 @@ class ClienteController extends Controller
         $cliente = Cliente::find($id);
 
         if (!$cliente) {
-            return response()->json(['message' => 'Cliente no encontrado'], 404);
+            return view('errors.404', ['message' => 'Cliente no encontrado']);
         }
 
         $request->validate([
@@ -57,7 +57,7 @@ class ClienteController extends Controller
 
         $cliente->update($request->all());
 
-        return response()->json($cliente);
+        return redirect()->route('clientes.show', $cliente->id)->with('success', 'Cliente actualizado exitosamente.');
     }
 
     // Eliminar un cliente
@@ -66,12 +66,12 @@ class ClienteController extends Controller
         $cliente = Cliente::find($id);
 
         if (!$cliente) {
-            return response()->json(['message' => 'Cliente no encontrado'], 404);
+            return view('errors.404', ['message' => 'Cliente no encontrado']);
         }
 
         $cliente->delete();
 
-        return response()->json(['message' => 'Cliente eliminado exitosamente']);
+        return redirect()->route('clientes.index')->with('success', 'Cliente eliminado exitosamente.');
     }
 }
 

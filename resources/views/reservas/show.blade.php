@@ -16,6 +16,6 @@
         <button type="submit">Eliminar</button>
     </form>
     <a href="{{ route('escenarios_deportivos.edit', $escenarioDeportivo->id_esc) }}">Editar</a>
-    <a href="{{ route('escenarios_deportivos.index') }}">Volver a la lista</a>
+    <a href="{{ route('reservas.index') }}">Volver a la lista</a>
 </body>
 </html>

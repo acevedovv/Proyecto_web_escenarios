@@ -12,7 +12,7 @@
                 <th>ID</th>
                 <th>Fecha de Reserva</th>
                 <th>Fecha de Devolución</th>
-                <th>Cliente</th>
+                <th>Usuario</th>
                 <th>Escenario Deportivo</th>
                 <th>Acciones</th>
             </tr>
@@ -23,7 +23,7 @@
                     <td>{{ $reserva->id_res }}</td>
                     <td>{{ \Carbon\Carbon::parse($reserva->fecha_res)->format('d/m/Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($reserva->fecha_dev)->format('d/m/Y') }}</td>
-                    <td>{{ $reserva->cliente->nombre_cli }}</td>
+                    <td>{{ $reserva->cliente->user->name }}</td>
                     <td>{{ $reserva->escenarioDeportivo->nombre_esc }}</td>
                     <td>
                         <a href="{{ route('reservas.show', $reserva->id_res) }}">Ver</a>

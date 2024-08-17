@@ -17,16 +17,16 @@ class Reserva extends Model
     protected $fillable = [
         'fecha_res',
         'fecha_dev',
-        'id_cli',
+        'user_id',
         'id_esc',
     ];
 
     protected $dates = ['fecha_res', 'fecha_dev'];
 
     // La relación con la tabla clientes
-    public function cliente()
+    public function user()
     {
-        return $this->belongsTo(Cliente::class, 'id_cli', 'id_cli');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     // La relación con la tabla escenarios_deportivos

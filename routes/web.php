@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\EscenarioDeportivoController;
 use App\Http\Controllers\ReservaController;
@@ -55,30 +54,6 @@ Route::post('/usuarios/{usuario}', [UserController::class, 'update'])->name('usu
 
 // Eliminar un usuario existente
 Route::delete('/usuarios/{usuario}', [UserController::class, 'destroy'])->name('usuarios.destroy');
-
-//--------------------Rutas para Clientes
-Route::resource('clientes', ClienteController::class);
-
-// Mostrar lista de clientes
-Route::get('/clientes', [ClienteController::class, 'index'])->name('clientes.index');
-
-// Mostrar formulario para crear un nuevo cliente
-Route::get('/clientes/create', [ClienteController::class, 'create'])->name('clientes.create');
-
-// Guardar un nuevo cliente
-Route::post('/clientes', [ClienteController::class, 'store'])->name('clientes.store');
-
-// Mostrar un cliente específico
-Route::get('/clientes/{cliente}', [ClienteController::class, 'show'])->name('clientes.show');
-
-// Mostrar formulario para editar un cliente existente
-Route::get('/clientes/{cliente}/edit', [ClienteController::class, 'edit'])->name('clientes.edit');
-
-// Actualizar un cliente existente
-Route::post('/clientes/{cliente}', [ClienteController::class, 'update'])->name('clientes.update');
-
-// Eliminar un cliente existente
-Route::delete('/clientes/{cliente}', [ClienteController::class, 'destroy'])->name('clientes.destroy');
 
 //----------------------Rutas para Funcionarios
 

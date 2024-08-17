@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reserva;
-use App\Models\Cliente;  
+use App\Models\User;   
 use App\Models\EscenarioDeportivo;  
 use Illuminate\Http\Request;
 
@@ -17,12 +17,12 @@ class ReservaController extends Controller
 
     public function create()
     {
-        // Obtener todos los clientes y escenarios deportivos
-        $clientes = Cliente::all();
+        // Obtén todos los usuarios desde la base de datos
+        $users = User::all();
         $escenariosDeportivos = EscenarioDeportivo::all();
 
         // Pasar los clientes y escenarios deportivos a la vista
-        return view('reservas.create', compact('clientes', 'escenariosDeportivos'));
+        return view('reservas.create', compact('users', 'escenariosDeportivos'));
     }
 
     public function store(Request $request)
@@ -30,7 +30,7 @@ class ReservaController extends Controller
         $request->validate([
             'fecha_res' => 'required|date',
             'fecha_dev' => 'required|date|after:fecha_res',
-            'id_cli' => 'required|exists:clientes,id_cli',
+            'user_id' => 'required|exists:users,id',
             'id_esc' => 'required|exists:escenarios_deportivos,id_esc',
         ]);
 
@@ -51,14 +51,14 @@ class ReservaController extends Controller
         // Obtén la reserva que se va a editar
         $reserva = Reserva::findOrFail($id);
 
-        // Obtén todos los clientes
-        $clientes = Cliente::all();
+        // Obtener todos los usuarios para llenar el dropdown o la lista en la vista
+        $users = User::all();
 
         // Obtén todos los escenarios deportivos
         $escenariosDeportivos = EscenarioDeportivo::all();
 
         // Pasa la reserva, los clientes y los escenarios deportivos a la vista
-        return view('reservas.edit', compact('reserva', 'clientes', 'escenariosDeportivos'));
+        return view('reservas.edit', compact('reserva', 'users', 'escenariosDeportivos'));
     }
 
     public function update(Request $request, Reserva $reserva)
@@ -66,7 +66,7 @@ class ReservaController extends Controller
         $request->validate([
             'fecha_res' => 'required|date',
             'fecha_dev' => 'required|date|after:fecha_res',
-            'id_cli' => 'required|exists:clientes,id_cli',
+            'user_id' => 'required|exists:users,id',
             'id_esc' => 'required|exists:escenarios_deportivos,id_esc',
         ]);
 

@@ -14,10 +14,10 @@
         <label for="fecha_dev">Fecha de Devolución:</label>
         <input type="date" name="fecha_dev" id="fecha_dev" value="{{ $reserva->fecha_dev->format('Y-m-d') }}" required>
         <br>
-        <label for="id_cli">Cliente:</label>
+        <label for="id_cli">Usuario:</label>
         <select name="id_cli" id="id_cli" required>
-            @foreach($clientes as $cliente)
-                <option value="{{ $cliente->id_cli }}" {{ $reserva->id_cli == $cliente->id_cli ? 'selected' : '' }}>{{ $cliente->nombre_cli }}</option>
+            @foreach($users as $user)
+                <option value="{{ $user->id }}" {{ $funcionario->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
             @endforeach
         </select>
         <br>

@@ -13,10 +13,10 @@
         <label for="fecha_dev">Fecha de Devolución:</label>
         <input type="date" name="fecha_dev" id="fecha_dev" required>
         <br>
-        <label for="id_cli">Cliente:</label>
+        <label for="id_cli">Usuario:</label>
         <select name="id_cli" id="id_cli" required>
-            @foreach($clientes as $cliente)
-                <option value="{{ $cliente->id_cli }}">{{ $cliente->nombre_cli }}</option>
+            @foreach($users as $user)
+                <option value="{{ $user->id  }}">{{ $user->nombre_usu }}</option>
             @endforeach
         </select>
         <br>

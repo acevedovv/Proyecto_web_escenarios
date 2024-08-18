@@ -20,7 +20,7 @@
                 <tr>
                     <td>{{ $funcionario->id_fun }}</td>
                     <td>{{ $funcionario->nombre_fun }}</td>
-                    <td>{{ $funcionario->user->name }}</td>
+                    <td>{{ $funcionario->user->id }}</td>
                     <td>
                         <a href="{{ route('funcionarios.show', $funcionario->id_fun) }}">Ver</a>
                         <a href="{{ route('funcionarios.edit', $funcionario->id_fun) }}">Editar</a>

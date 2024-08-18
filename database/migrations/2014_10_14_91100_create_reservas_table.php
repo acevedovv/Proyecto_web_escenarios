@@ -13,19 +13,20 @@ class CreateReservasTable extends Migration
      */
     public function up()
     {
+        #Schema::dropIfExists('reservas');
         Schema::create('reservas', function (Blueprint $table) {
             $table->id('id_res');
             $table->date('fecha_res');
             $table->date('fecha_dev');
-            $table->unsignedBigInteger('id_cli');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('id_esc');
             $table->timestamps();
             
-            // Definir la relación con la tabla clientes
-            $table->foreign('id_cli')->references('id_cli')->on('clientes');
+            // Definir la relación con la tabla usuarios
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             // Definir la relación con la tabla escenarios_deportivos
-            $table->foreign('id_esc')->references('id_esc')->on('escenarios_deportivos');
+            $table->foreign('id_esc')->references('id_esc')->on('escenarios_deportivos')->onDelete('cascade');
         });
     }
 

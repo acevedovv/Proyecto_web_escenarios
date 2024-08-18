@@ -14,17 +14,21 @@
         <label for="fecha_dev">Fecha de Devolución:</label>
         <input type="date" name="fecha_dev" id="fecha_dev" value="{{ $reserva->fecha_dev->format('Y-m-d') }}" required>
         <br>
-        <label for="id_cli">Cliente:</label>
-        <select name="id_cli" id="id_cli" required>
-            @foreach($clientes as $cliente)
-                <option value="{{ $cliente->id_cli }}" {{ $reserva->id_cli == $cliente->id_cli ? 'selected' : '' }}>{{ $cliente->nombre_cli }}</option>
+        <label for="user_id">Usuario:</label> <!-- Cambié "usu_id" a "user_id" -->
+        <select name="user_id" id="user_id" required> <!-- Cambié "usu_id" a "user_id" -->
+            @foreach($users as $user)
+                <option value="{{ $user->id }}" {{ $reserva->user_id == $user->id ? 'selected' : '' }}>
+                    {{ $user->nombre_usu }}
+                </option>
             @endforeach
         </select>
         <br>
         <label for="id_esc">Escenario Deportivo:</label>
         <select name="id_esc" id="id_esc" required>
             @foreach($escenariosDeportivos as $escenario)
-                <option value="{{ $escenario->id_esc }}" {{ $reserva->id_esc == $escenario->id_esc ? 'selected' : '' }}>{{ $escenario->nombre_esc }}</option>
+                <option value="{{ $escenario->id_esc }}" {{ $reserva->id_esc == $escenario->id_esc ? 'selected' : '' }}>
+                    {{ $escenario->nombre_esc }}
+                </option>
             @endforeach
         </select>
         <br>

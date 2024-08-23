@@ -7,6 +7,10 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\EscenarioDeportivoController;
 use App\Http\Controllers\ReservaController;
 
+
+Route::get('/', function () {
+    return view('welcome');
+});
 //----------------------Rutas para Roles
 Route::resource('roles', RoleController::class);
 
@@ -82,6 +86,11 @@ Route::delete('/funcionarios/{funcionario}', [FuncionarioController::class, 'des
 
 //----------------------Rutas para Escenarios Deportivos
 
+Route::get('/escenarios_deportivos/info', function () {
+    return view('escenarios_deportivos.info');
+})->name('escenarios_deportivos/info');  // Asegúrate de que este nombre es el que usas en la vista
+
+
 Route::resource('escenarios_deportivos', EscenarioDeportivoController::class);
 
 // Mostrar lista de escenarios deportivos
@@ -129,3 +138,4 @@ Route::post('/reservas/{reserva}', [ReservaController::class, 'update'])->name('
 
 // Eliminar una reserva existente
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
+

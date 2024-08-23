@@ -7,6 +7,10 @@ use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\EscenarioDeportivoController;
 use App\Http\Controllers\ReservaController;
 
+
+Route::get('/', function () {
+    return view('welcome');
+});
 //----------------------Rutas para Roles
 Route::resource('roles', RoleController::class);
 
@@ -82,6 +86,11 @@ Route::delete('/funcionarios/{funcionario}', [FuncionarioController::class, 'des
 
 //----------------------Rutas para Escenarios Deportivos
 
+Route::get('/escenarios_deportivos/info', function () {
+    return view('escenarios_deportivos.info');
+})->name('escenarios_deportivos/info');  // Asegúrate de que este nombre es el que usas en la vista
+
+
 Route::resource('escenarios_deportivos', EscenarioDeportivoController::class);
 
 // Mostrar lista de escenarios deportivos
@@ -129,47 +138,4 @@ Route::post('/reservas/{reserva}', [ReservaController::class, 'update'])->name('
 
 // Eliminar una reserva existente
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Auth::routes();
-
-Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home')->middleware('auth');
-
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('table-list', function () {
-		return view('pages.table_list');
-	})->name('table');
-
-	Route::get('typography', function () {
-		return view('pages.typography');
-	})->name('typography');
-
-	Route::get('icons', function () {
-		return view('pages.icons');
-	})->name('icons');
-
-	Route::get('map', function () {
-		return view('pages.map');
-	})->name('map');
-
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
-
-	Route::get('rtl-support', function () {
-		return view('pages.language');
-	})->name('language');
-
-	Route::get('upgrade', function () {
-		return view('pages.upgrade');
-	})->name('upgrade');
-});
-
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'App\Http\Controllers\ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
-});
 

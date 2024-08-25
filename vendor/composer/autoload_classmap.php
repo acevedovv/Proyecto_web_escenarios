@@ -10,12 +10,17 @@ return array(
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\ClienteController' => $baseDir . '/app/Http/Controllers/ClienteController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
-    'App\\Http\\Controllers\\Escenario_DeportivoController' => $baseDir . '/app/Http/Controllers/Escenario_DeportivoController.php',
+    'App\\Http\\Controllers\\EscenarioDeportivoController' => $baseDir . '/app/Http/Controllers/EscenarioDeportivoController.php',
     'App\\Http\\Controllers\\FuncionarioController' => $baseDir . '/app/Http/Controllers/FuncionarioController.php',
+<<<<<<< HEAD
+=======
+    'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
+>>>>>>> acefae8484cae0abab5b5caef322ba10999bd5fe
     'App\\Http\\Controllers\\ReservaController' => $baseDir . '/app/Http/Controllers/ReservaController.php',
     'App\\Http\\Controllers\\RoleController' => $baseDir . '/app/Http/Controllers/RoleController.php',
     'App\\Http\\Controllers\\UserController' => $baseDir . '/app/Http/Controllers/UserController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
+<<<<<<< HEAD
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => $baseDir . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
@@ -26,6 +31,10 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Models\\Cliente' => $baseDir . '/app/Models/Cliente.php',
     'App\\Models\\Escenario_Deportivo' => $baseDir . '/app/Models/Escenario_Deportivo.php',
+=======
+    'App\\Models\\Cliente' => $baseDir . '/app/Models/Cliente.php',
+    'App\\Models\\EscenarioDeportivo' => $baseDir . '/app/Models/EscenarioDeportivo.php',
+>>>>>>> acefae8484cae0abab5b5caef322ba10999bd5fe
     'App\\Models\\Funcionario' => $baseDir . '/app/Models/Funcionario.php',
     'App\\Models\\Reserva' => $baseDir . '/app/Models/Reserva.php',
     'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
@@ -150,6 +159,12 @@ return array(
     'Database\\Factories\\UserFactory' => $baseDir . '/database/factories/UserFactory.php',
     'Database\\Seeders\\ClientesTableSeeder' => $baseDir . '/database/seeders/ClientesTableSeeder.php',
     'Database\\Seeders\\DatabaseSeeder' => $baseDir . '/database/seeders/DatabaseSeeder.php',
+<<<<<<< HEAD
+=======
+    'Database\\Seeders\\Escenarios_deportivosTableSeeder' => $baseDir . '/database/seeders/Escenarios_deportivosTableSeeder.php',
+    'Database\\Seeders\\FuncionariosTableSeeder' => $baseDir . '/database/seeders/FuncionariosTableSeeder.php',
+    'Database\\Seeders\\ReservasTableSeeder' => $baseDir . '/database/seeders/ReservasTableSeeder.php',
+>>>>>>> acefae8484cae0abab5b5caef322ba10999bd5fe
     'Database\\Seeders\\RolesTableSeeder' => $baseDir . '/database/seeders/RolesTableSeeder.php',
     'Database\\Seeders\\UsersTableSeeder' => $baseDir . '/database/seeders/UsersTableSeeder.php',
     'DeepCopy\\DeepCopy' => $vendorDir . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',

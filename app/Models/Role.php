@@ -11,6 +11,15 @@ class Role extends Model
 
     // El nombre de la tabla asociada
     protected $table = 'roles';
+ 
+    // La clave primaria de la tabla
+    protected $primaryKey = 'id_rol';
+
+    // Indica si el ID de la tabla se incrementa automáticamente
+    public $incrementing = true;
+    
+    // El tipo de la clave primaria (generalmente 'int' o 'string')
+    protected $keyType = 'int';
 
     // Los atributos que son asignables en masa
     protected $fillable = [

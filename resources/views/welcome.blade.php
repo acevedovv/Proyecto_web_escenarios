@@ -23,10 +23,10 @@
                         <a class="nav-link" href="{{ route('escenarios_deportivos/info') }}">Escenarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Precios</a>
+                        <a class="nav-link" href="{{ route('escenarios_deportivos/precios') }}">Precios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
+                        <a class="nav-link" href="{{ route('escenarios_deportivos/contactanos') }}">Contacto</a>
                     </li>
                 </ul>
             </div>

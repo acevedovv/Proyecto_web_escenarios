@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Barra de navegación -->
+  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Escenarios Deportivos</a>
@@ -33,7 +33,7 @@
         </div>
     </nav>
 
-    <!-- Encabezado de la página -->
+
     <header class="bg-primary text-white text-center py-5">
         <div class="container">
             <h1>Nuestros Precios</h1>
@@ -41,11 +41,11 @@
         </div>
     </header>
 
-    <!-- Sección de Precios -->
+   
     <section class="py-5">
         <div class="container">
             <div class="row text-center">
-                <!-- Franja Horaria Mañana -->
+                
                 <div class="col-lg-4">
                     <div class="card mb-4 box-shadow">
                         <div class="card-header bg-dark text-white">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
 
-                <!-- Franja Horaria Tarde -->
+              
                 <div class="col-lg-4">
                     <div class="card mb-4 box-shadow">
                         <div class="card-header bg-dark text-white">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
 
-                <!-- Franja Horaria Noche -->
+                
                 <div class="col-lg-4">
                     <div class="card mb-4 box-shadow">
                         <div class="card-header bg-dark text-white">
@@ -102,7 +102,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+   
     <footer class="bg-dark text-white text-center py-3">
         <div class="container">
             <p>&copy; 2024 Escenarios Deportivos. Todos los derechos reservados.</p>

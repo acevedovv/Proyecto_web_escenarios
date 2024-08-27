@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <!-- Barra de navegación -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Escenarios Deportivos</a>
@@ -46,7 +46,7 @@
         </div>
     </nav>
 
-    <!-- Contenido principal -->
+
     <header class="bg-primary text-white text-center py-5">
         <div class="container">
             <h1>Escenarios Deportivos</h1>
@@ -54,11 +54,11 @@
         </div>
     </header>
 
-    <!-- Sección de Escenarios -->
+ 
     <section class="py-5">
         <div class="container">
             <div class="row">
-                <!-- Escenario 1 -->
+         
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <img src="{{ asset('images/imagen1.jfif') }}" class="card-img-top" alt="Escenario 1">
@@ -81,7 +81,7 @@
                     </div>
                 </div>
 
-                <!-- Escenario 2 -->
+              
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <img src="{{ asset('images/imagen2.jfif') }}" class="card-img-top" alt="Escenario 2">
@@ -104,7 +104,7 @@
                     </div>
                 </div>
 
-                <!-- Escenario 3 -->
+           
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <img src="{{ asset('images/imagen3.jfif') }}" class="card-img-top" alt="Escenario 3">
@@ -129,8 +129,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
         <div class="container">
             <p>&copy; 2024 Escenarios Deportivos. Todos los derechos reservados.</p>

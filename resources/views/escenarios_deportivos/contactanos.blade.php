@@ -16,7 +16,7 @@
     </style>
 </head>
 <body>
-    <!-- Barra de navegación -->
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Escenarios Deportivos</a>
@@ -42,7 +42,7 @@
         </div>
     </nav>
 
-    <!-- Encabezado de Contacto -->
+
     <header class="contact-header text-center">
         <div class="container">
             <h1>Contáctanos</h1>
@@ -50,7 +50,6 @@
         </div>
     </header>
 
-    <!-- Formulario de Contacto -->
     <section class="py-5">
         <div class="container">
             <div class="row">
@@ -75,7 +74,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+
     <footer class="bg-dark text-white text-center py-3">
         <div class="container">
             <p>&copy; 2024 Escenarios Deportivos. Todos los derechos reservados.</p>

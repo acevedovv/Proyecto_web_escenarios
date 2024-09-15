@@ -13,7 +13,6 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
@@ -58,7 +57,6 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Php73\\' => 23,
-            'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Intl\\Normalizer\\' => 33,
             'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
@@ -131,10 +129,7 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         array (
             'Illuminate\\Support\\' => 19,
             'Illuminate\\Foundation\\Auth\\' => 27,
-<<<<<<< HEAD
             'Illuminate\\Database\\Eloquent\\' => 29,
-=======
->>>>>>> bbff1c2e1a9aab978bebd671d563a680c210e801
             'Illuminate\\' => 11,
         ),
         'G' => 
@@ -212,10 +207,6 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'Symfony\\Polyfill\\Php73\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php73',
-        ),
-        'Symfony\\Polyfill\\Php72\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/polyfill-php72',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -423,13 +414,10 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         array (
             0 => __DIR__ . '/..' . '/laravel/ui/auth-backend',
         ),
-<<<<<<< HEAD
         'Illuminate\\Database\\Eloquent\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/legacy-factories/src',
         ),
-=======
->>>>>>> bbff1c2e1a9aab978bebd671d563a680c210e801
         'Illuminate\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
@@ -535,15 +523,12 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-<<<<<<< HEAD
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
-=======
->>>>>>> bbff1c2e1a9aab978bebd671d563a680c210e801
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\EscenarioDeportivoController' => __DIR__ . '/../..' . '/app/Http/Controllers/EscenarioDeportivoController.php',
         'App\\Http\\Controllers\\FuncionarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/FuncionarioController.php',
@@ -557,16 +542,14 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => __DIR__ . '/../..' . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+        'App\\Http\\Middleware\\Role' => __DIR__ . '/../..' . '/app/Http/Middleware/Role.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-<<<<<<< HEAD
         'App\\Http\\Requests\\PasswordRequest' => __DIR__ . '/../..' . '/app/Http/Requests/PasswordRequest.php',
         'App\\Http\\Requests\\ProfileRequest' => __DIR__ . '/../..' . '/app/Http/Requests/ProfileRequest.php',
         'App\\Http\\Requests\\UserRequest' => __DIR__ . '/../..' . '/app/Http/Requests/UserRequest.php',
-=======
->>>>>>> bbff1c2e1a9aab978bebd671d563a680c210e801
         'App\\Models\\EscenarioDeportivo' => __DIR__ . '/../..' . '/app/Models/EscenarioDeportivo.php',
         'App\\Models\\Funcionario' => __DIR__ . '/../..' . '/app/Models/Funcionario.php',
         'App\\Models\\Reserva' => __DIR__ . '/../..' . '/app/Models/Reserva.php',
@@ -5523,7 +5506,6 @@ class ComposerStaticInitc61ff82cbf0142a401a48a8161e1595a
         'Symfony\\Polyfill\\Intl\\Idn\\Resources\\unidata\\Regex' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/Resources/unidata/Regex.php',
         'Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Normalizer.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
-        'Symfony\\Polyfill\\Php72\\Php72' => __DIR__ . '/..' . '/symfony/polyfill-php72/Php72.php',
         'Symfony\\Polyfill\\Php73\\Php73' => __DIR__ . '/..' . '/symfony/polyfill-php73/Php73.php',
         'Symfony\\Polyfill\\Php80\\Php80' => __DIR__ . '/..' . '/symfony/polyfill-php80/Php80.php',
         'Symfony\\Polyfill\\Php80\\PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/PhpToken.php',

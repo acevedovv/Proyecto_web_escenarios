@@ -8,15 +8,12 @@ $baseDir = dirname($vendorDir);
 return array(
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
-<<<<<<< HEAD
     'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
     'App\\Http\\Controllers\\Auth\\RegisterController' => $baseDir . '/app/Http/Controllers/Auth/RegisterController.php',
     'App\\Http\\Controllers\\Auth\\ResetPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ResetPasswordController.php',
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
-=======
->>>>>>> bbff1c2e1a9aab978bebd671d563a680c210e801
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\EscenarioDeportivoController' => $baseDir . '/app/Http/Controllers/EscenarioDeportivoController.php',
     'App\\Http\\Controllers\\FuncionarioController' => $baseDir . '/app/Http/Controllers/FuncionarioController.php',
@@ -30,16 +27,14 @@ return array(
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\PreventRequestsDuringMaintenance' => $baseDir . '/app/Http/Middleware/PreventRequestsDuringMaintenance.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
+    'App\\Http\\Middleware\\Role' => $baseDir . '/app/Http/Middleware/Role.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
     'App\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
-<<<<<<< HEAD
     'App\\Http\\Requests\\PasswordRequest' => $baseDir . '/app/Http/Requests/PasswordRequest.php',
     'App\\Http\\Requests\\ProfileRequest' => $baseDir . '/app/Http/Requests/ProfileRequest.php',
     'App\\Http\\Requests\\UserRequest' => $baseDir . '/app/Http/Requests/UserRequest.php',
-=======
->>>>>>> bbff1c2e1a9aab978bebd671d563a680c210e801
     'App\\Models\\EscenarioDeportivo' => $baseDir . '/app/Models/EscenarioDeportivo.php',
     'App\\Models\\Funcionario' => $baseDir . '/app/Models/Funcionario.php',
     'App\\Models\\Reserva' => $baseDir . '/app/Models/Reserva.php',
@@ -4996,7 +4991,6 @@ return array(
     'Symfony\\Polyfill\\Intl\\Idn\\Resources\\unidata\\Regex' => $vendorDir . '/symfony/polyfill-intl-idn/Resources/unidata/Regex.php',
     'Symfony\\Polyfill\\Intl\\Normalizer\\Normalizer' => $vendorDir . '/symfony/polyfill-intl-normalizer/Normalizer.php',
     'Symfony\\Polyfill\\Mbstring\\Mbstring' => $vendorDir . '/symfony/polyfill-mbstring/Mbstring.php',
-    'Symfony\\Polyfill\\Php72\\Php72' => $vendorDir . '/symfony/polyfill-php72/Php72.php',
     'Symfony\\Polyfill\\Php73\\Php73' => $vendorDir . '/symfony/polyfill-php73/Php73.php',
     'Symfony\\Polyfill\\Php80\\Php80' => $vendorDir . '/symfony/polyfill-php80/Php80.php',
     'Symfony\\Polyfill\\Php80\\PhpToken' => $vendorDir . '/symfony/polyfill-php80/PhpToken.php',

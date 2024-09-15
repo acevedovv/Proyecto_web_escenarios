@@ -28,6 +28,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('escenarios_deportivos/contactanos') }}">Contacto</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="{{ route('login') }}">Iniciar Sesión</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -41,7 +44,6 @@
         </div>
     </header>
 
-  
     <section class="py-5">
         <div class="container text-center">
             <h2>Nuestros Servicios</h2>
@@ -63,7 +65,6 @@
         </div>
     </section>
 
-    
     <section class="bg-light py-5">
         <div class="container">
             <h2 class="text-center">Testimonios de Clientes</h2>
@@ -71,7 +72,7 @@
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <p class="card-text">"La pista de patinaje es de excelente caliad. Reservar fue rápido y fácil."</p>
+                            <p class="card-text">"La pista de patinaje es de excelente calidad. Reservar fue rápido y fácil."</p>
                             <p class="text-end"><strong>- Juan Pérez</strong></p>
                         </div>
                     </div>
@@ -96,25 +97,23 @@
         </div>
     </section>
 
-    
     <section class="py-5">
         <div class="container">
             <h2 class="text-center">Galería de Escenarios</h2>
             <div class="row">
                 <div class="col-md-4 mb-4">
-                <img src="{{ asset('images/imagen1.jfif') }}" alt="Descripción de la imagen">
+                    <img src="{{ asset('images/imagen1.jfif') }}" alt="Descripción de la imagen" class="img-fluid">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <img src="{{ asset('images/imagen2.jfif') }}" alt="Descripción de la imagen">
+                    <img src="{{ asset('images/imagen2.jfif') }}" alt="Descripción de la imagen" class="img-fluid">
                 </div>
                 <div class="col-md-4 mb-4">
-                    <img src="{{ asset('images/imagen3.jfif') }}" alt="Descripción de la imagen">
+                    <img src="{{ asset('images/imagen3.jfif') }}" alt="Descripción de la imagen" class="img-fluid">
                 </div>
             </div>
         </div>
     </section>
 
-  
     <section class="bg-light py-5">
         <div class="container">
             <h2 class="text-center">Nuestros Precios</h2>
@@ -153,7 +152,6 @@
         </div>
     </section>
 
-   
     <section class="py-5">
         <div class="container">
             <h2 class="text-center">Contáctanos</h2>
@@ -180,7 +178,6 @@
         </div>
     </section>
 
-    
     <footer class="bg-dark text-white text-center py-3">
         <div class="container">
             <p>&copy; 2024 Escenarios Deportivos. Todos los derechos reservados.</p>

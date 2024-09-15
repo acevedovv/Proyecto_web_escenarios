@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Barra de navegación -->
+  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Escenarios Deportivos</a>
@@ -23,17 +23,16 @@
                         <a class="nav-link" href="{{ route('escenarios_deportivos/info') }}">Escenarios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Precios</a>
+                        <a class="nav-link" href="{{ route('escenarios_deportivos/precios') }}">Precios</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contacto</a>
+                        <a class="nav-link" href="{{ route('escenarios_deportivos/contactanos') }}">Contacto</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Contenido principal -->
     <header class="bg-primary text-white text-center py-5">
         <div class="container">
             <h1>Bienvenido a Escenarios Deportivos</h1>
@@ -42,7 +41,7 @@
         </div>
     </header>
 
-    <!-- Sección de Servicios -->
+  
     <section class="py-5">
         <div class="container text-center">
             <h2>Nuestros Servicios</h2>
@@ -64,7 +63,7 @@
         </div>
     </section>
 
-    <!-- Sección de Testimonios -->
+    
     <section class="bg-light py-5">
         <div class="container">
             <h2 class="text-center">Testimonios de Clientes</h2>
@@ -97,7 +96,7 @@
         </div>
     </section>
 
-    <!-- Sección de Galería -->
+    
     <section class="py-5">
         <div class="container">
             <h2 class="text-center">Galería de Escenarios</h2>
@@ -115,7 +114,7 @@
         </div>
     </section>
 
-    <!-- Sección de Precios -->
+  
     <section class="bg-light py-5">
         <div class="container">
             <h2 class="text-center">Nuestros Precios</h2>
@@ -154,7 +153,7 @@
         </div>
     </section>
 
-    <!-- Sección de Contacto -->
+   
     <section class="py-5">
         <div class="container">
             <h2 class="text-center">Contáctanos</h2>
@@ -181,7 +180,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    
     <footer class="bg-dark text-white text-center py-3">
         <div class="container">
             <p>&copy; 2024 Escenarios Deportivos. Todos los derechos reservados.</p>

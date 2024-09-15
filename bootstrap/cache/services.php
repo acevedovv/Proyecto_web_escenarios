@@ -25,6 +25,7 @@
     21 => 'Illuminate\\View\\ViewServiceProvider',
     22 => 'Facade\\Ignition\\IgnitionServiceProvider',
     23 => 'Fruitcake\\Cors\\CorsServiceProvider',
+<<<<<<< HEAD
     24 => 'LaravelFrontendPresets\\MaterialPreset\\MaterialPresetServiceProvider',
     25 => 'Illuminate\\Database\\Eloquent\\LegacyFactoryServiceProvider',
     26 => 'Laravel\\Sail\\SailServiceProvider',
@@ -37,6 +38,18 @@
     33 => 'App\\Providers\\AuthServiceProvider',
     34 => 'App\\Providers\\EventServiceProvider',
     35 => 'App\\Providers\\RouteServiceProvider',
+=======
+    24 => 'Laravel\\Sail\\SailServiceProvider',
+    25 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+    26 => 'Laravel\\Tinker\\TinkerServiceProvider',
+    27 => 'Laravel\\Ui\\UiServiceProvider',
+    28 => 'Carbon\\Laravel\\ServiceProvider',
+    29 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    30 => 'App\\Providers\\AppServiceProvider',
+    31 => 'App\\Providers\\AuthServiceProvider',
+    32 => 'App\\Providers\\EventServiceProvider',
+    33 => 'App\\Providers\\RouteServiceProvider',
+>>>>>>> bbff1c2e1a9aab978bebd671d563a680c210e801
   ),
   'eager' => 
   array (
@@ -52,6 +65,7 @@
     9 => 'Illuminate\\View\\ViewServiceProvider',
     10 => 'Facade\\Ignition\\IgnitionServiceProvider',
     11 => 'Fruitcake\\Cors\\CorsServiceProvider',
+<<<<<<< HEAD
     12 => 'LaravelFrontendPresets\\MaterialPreset\\MaterialPresetServiceProvider',
     13 => 'Illuminate\\Database\\Eloquent\\LegacyFactoryServiceProvider',
     14 => 'Laravel\\Sanctum\\SanctumServiceProvider',
@@ -62,6 +76,16 @@
     19 => 'App\\Providers\\AuthServiceProvider',
     20 => 'App\\Providers\\EventServiceProvider',
     21 => 'App\\Providers\\RouteServiceProvider',
+=======
+    12 => 'Laravel\\Sanctum\\SanctumServiceProvider',
+    13 => 'Laravel\\Ui\\UiServiceProvider',
+    14 => 'Carbon\\Laravel\\ServiceProvider',
+    15 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
+    16 => 'App\\Providers\\AppServiceProvider',
+    17 => 'App\\Providers\\AuthServiceProvider',
+    18 => 'App\\Providers\\EventServiceProvider',
+    19 => 'App\\Providers\\RouteServiceProvider',
+>>>>>>> bbff1c2e1a9aab978bebd671d563a680c210e801
   ),
   'deferred' => 
   array (

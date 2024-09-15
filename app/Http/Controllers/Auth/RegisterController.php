@@ -50,6 +50,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+<<<<<<< HEAD
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
@@ -71,3 +72,26 @@ class RegisterController extends Controller
         ]);
     }
 }
+=======
+            //'nombre_usu' => ['required', 'string', 'max:255'],  // Aquí agregamos la validación para 'nombre_usu'
+            //'name' => ['required', 'string', 'max:255'],
+            //'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+           // 'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    protected function create(array $data)
+{
+
+    //dd($data); // Agrega esto temporalmente para inspeccionar los datos
+    return User::create([
+        'nombre_usu' => $data['nombre_usu'],
+        'num_usu' => $data['num_usu'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+        'id_rol' => $data['id_rol'] ?? 2, // Valor por defecto 2 si no se selecciona uno
+    ]);
+}
+
+}
+>>>>>>> bbff1c2e1a9aab978bebd671d563a680c210e801

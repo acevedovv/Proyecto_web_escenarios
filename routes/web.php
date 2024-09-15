@@ -150,3 +150,7 @@ Route::post('/reservas/{reserva}', [ReservaController::class, 'update'])->name('
 // Eliminar una reserva existente
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

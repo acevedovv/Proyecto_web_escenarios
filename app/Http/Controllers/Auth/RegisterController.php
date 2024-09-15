@@ -50,17 +50,17 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'nombre_usu' => ['required', 'string', 'max:255'],  // Aquí agregamos la validación para 'nombre_usu'
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            //'nombre_usu' => ['required', 'string', 'max:255'],  // Aquí agregamos la validación para 'nombre_usu'
+            //'name' => ['required', 'string', 'max:255'],
+            //'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+           // 'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
     protected function create(array $data)
 {
 
-    dd($data); // Agrega esto temporalmente para inspeccionar los datos
+    //dd($data); // Agrega esto temporalmente para inspeccionar los datos
     return User::create([
         'nombre_usu' => $data['nombre_usu'],
         'num_usu' => $data['num_usu'],

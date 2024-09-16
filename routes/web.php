@@ -154,3 +154,4 @@ Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->nam
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

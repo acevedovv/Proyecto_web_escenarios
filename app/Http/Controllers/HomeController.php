@@ -1,10 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\EscenarioDeportivo; // Asegúrate de importar el modelo
 
 use Illuminate\Http\Request;
-
+use App\Models\EscenarioDeportivo; // Asegúrate de importar el modelo
 class HomeController extends Controller
 {
     /**
@@ -24,8 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $escenarios = EscenarioDeportivo::all(); // Obtener todos los escenarios deportivos
-
-        return view('home', compact('escenarios')); // Pasar los escenarios a la vista
+        $escenarios = EscenarioDeportivo::all(); // Asegúrate de obtener los datos correctamente
+        return view('home', compact('escenarios'));
     }
 }

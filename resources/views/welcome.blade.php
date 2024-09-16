@@ -40,7 +40,7 @@
         <div class="container">
             <h1>Bienvenido a Escenarios Deportivos</h1>
             <p class="lead">Encuentra y alquila los mejores escenarios deportivos en tu área</p>
-            <a href="#" class="btn btn-light btn-lg">Explorar Escenarios</a>
+            <a href="{{ route('escenarios_deportivos/info') }}" class="btn btn-light btn-lg">Explorar Escenarios</a>
         </div>
     </header>
 
@@ -124,7 +124,7 @@
                             <h3 class="card-title">Básico</h3>
                             <p class="card-text">Acceso a canchas seleccionadas.</p>
                             <p class="card-text"><strong>$20 / hora</strong></p>
-                            <a href="#" class="btn btn-primary">Seleccionar</a>
+                            <a href="{{ route('reservas.create', ['plan' => 'basico']) }}" class="btn btn-primary">Seleccionar</a>
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                             <h3 class="card-title">Estándar</h3>
                             <p class="card-text">Acceso a una variedad de escenarios.</p>
                             <p class="card-text"><strong>$40 / hora</strong></p>
-                            <a href="#" class="btn btn-primary">Seleccionar</a>
+                            <a href="{{ route('reservas.create', ['plan' => 'estandar']) }}" class="btn btn-primary">Seleccionar</a>
                         </div>
                     </div>
                 </div>
@@ -144,7 +144,7 @@
                             <h3 class="card-title">Premium</h3>
                             <p class="card-text">Acceso ilimitado a todos los escenarios.</p>
                             <p class="card-text"><strong>$60 / hora</strong></p>
-                            <a href="#" class="btn btn-primary">Seleccionar</a>
+                            <a href="{{ route('reservas.create', ['plan' => 'premium']) }}" class="btn btn-primary">Seleccionar</a>
                         </div>
                     </div>
                 </div>

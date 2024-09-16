@@ -80,6 +80,23 @@
                             </div>
                         </div>
 
+                        <!-- Selección de Rol -->
+                        <div class="row mb-3">
+                            <label for="id_rol" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="id_rol" class="form-control @error('id_rol') is-invalid @enderror" name="id_rol" required>
+                                    <option value="1" {{ old('id_rol') == 1 ? 'selected' : '' }}>Administrador</option>
+                                    <option value="2" {{ old('id_rol') == 2 ? 'selected' : '' }}>Usuario</option>
+                                </select>
+
+                                @error('id_rol')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

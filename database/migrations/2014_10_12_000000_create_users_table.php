@@ -17,7 +17,10 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nombre_usu');
             $table->string('num_usu')->unique();
-            $table->unsignedBigInteger('id_rol');
+            $table->string('email')->unique();
+            $table->unsignedBigInteger('id_rol')->default(2); 
+            $table->string('password');
+
             $table->timestamps();
             
             // Definir la relación con la tabla roles

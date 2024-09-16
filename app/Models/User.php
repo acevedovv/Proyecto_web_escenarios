@@ -19,13 +19,18 @@ class User extends Authenticatable
     protected $fillable = [
         'nombre_usu',
         'num_usu',
+        'email',
+        'password',
         'id_rol',
     ];
 
-    // Los atributos que deberían ser ocultados para arrays
     protected $hidden = [
-        'created_at',
-        'updated_at',
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
     ];
 
     // Define la relación con la tabla 'roles'

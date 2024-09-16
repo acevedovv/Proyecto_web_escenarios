@@ -125,6 +125,7 @@ Route::post('/escenarios_deportivos/{escenarioDeportivo}', [EscenarioDeportivoCo
 // Eliminar un escenario deportivo existente
 Route::delete('/escenarios_deportivos/{escenarioDeportivo}', [EscenarioDeportivoController::class, 'destroy'])->name('escenarios_deportivos.destroy');
 
+
 //----------------------Rutas para Reservas
 
 Route::resource('reservas', ReservaController::class);
@@ -150,3 +151,15 @@ Route::post('/reservas/{reserva}', [ReservaController::class, 'update'])->name('
 // Eliminar una reserva existente
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth', 'role:administrador'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    
+});
+//Generar rutas necesarias 
+Route::resource('escenariosDeportivos',EscenarioDeportivoController::class);
+Route::get('download-pdf',[EscenarioDeportivoController::class,'generarPDF'])->name('descargar-pdf');

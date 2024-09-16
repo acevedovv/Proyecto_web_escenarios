@@ -17,6 +17,14 @@
             height: 200px;
             width: 100%;
         }
+        .header-bg {
+            background-image: url('{{ asset('images/portada1.jpg') }}'); /* Reemplaza con la ruta a tu imagen de fondo */
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+        }
     </style>
 </head>
 <body>
@@ -46,19 +54,16 @@
         </div>
     </nav>
 
-
-    <header class="bg-primary text-white text-center py-5">
+    <header class="header-bg">
         <div class="container">
             <h1>Escenarios Deportivos</h1>
             <p class="lead">Explora las fotos e información de nuestros escenarios deportivos</p>
         </div>
     </header>
 
- 
     <section class="py-5">
         <div class="container">
             <div class="row">
-         
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <img src="{{ asset('images/imagen1.jfif') }}" class="card-img-top" alt="Escenario 1">
@@ -81,7 +86,6 @@
                     </div>
                 </div>
 
-              
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <img src="{{ asset('images/imagen2.jfif') }}" class="card-img-top" alt="Escenario 2">
@@ -104,31 +108,30 @@
                     </div>
                 </div>
 
-           
                 <div class="col-md-4 mb-4">
                     <div class="card h-100">
                         <img src="{{ asset('images/imagen3.jfif') }}" class="card-img-top" alt="Escenario 3">
                         <div class="card-body">
-                            <h5 class="card-title">Canchas de Tenis Palogrande
-                            </h5>
+                            <h5 class="card-title">Canchas de Tenis Palogrande</h5>
                             <p class="card-text">Excelentes instalaciones para el tenis en un entorno deportivo de primer nivel. Equipadas con canchas de alta calidad, ofrecen el espacio perfecto para entrenamientos y competiciones en Manizales.</p>
                         </div>
                         <div class="map-container">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.7859093807671!2d-75.48837344124345!3d5.05710993098956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e47657c3ff931c5%3A0x56aa6ab51be835af!2sCanchas%20de%20Tenis%20Palogrande!5e0!3m2!1ses-419!2sco!4v1724718949202!5m2!1ses-419!2sco" 
-                                    width="100%" 
-                                    height="100%" 
-                                    frameborder="0" 
-                                    style="border:0;" 
-                                    allowfullscreen="" 
-                                    aria-hidden="false" 
-                                    tabindex="0">
-                                </iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d496.7859093807671!2d-75.48837344124345!3d5.05710993098956!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e47657c3ff931c5%3A0x56aa6ab51be835af!2sCanchas%20de%20Tenis%20Palogrande!5e0!3m2!1ses-419!2sco!4v1724718949202!5m2!1ses-419!2sco" 
+                                width="100%" 
+                                height="100%" 
+                                frameborder="0" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                aria-hidden="false" 
+                                tabindex="0">
+                            </iframe>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
     <footer class="bg-dark text-white text-center py-3">
         <div class="container">
             <p>&copy; 2024 Escenarios Deportivos. Todos los derechos reservados.</p>

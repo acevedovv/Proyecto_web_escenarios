@@ -15,6 +15,14 @@ class EscenarioDeportivoController extends Controller
         return view('escenarios_deportivos.index', compact('escenariosDeportivos'));
     }
 
+    //Implementación de la descarga de PDF en la vista de Escenarios Deportivos
+    public function generarPDF()
+    {
+        $escenarios_deportivos = EscenarioDeportivo::all();
+        $pdf = PDF::loadView('escenarios_deportivos.download', compact('escenarios_deportivos'));
+        return $pdf->download('escenarios_deportivos.pdf');
+    }
+
     public function create()
     {
         $funcionarios = Funcionario::all(); // Obtén todos los funcionarios

@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>Lista de Reservas</title>
+    <div class="col-md-12">
+        <a href="{{ route('reservas.create') }}" class="btn btn-primary">Generate PDF</a>
+    </div>
 </head>
 <body>
     <h1>Lista de Reservas</h1>

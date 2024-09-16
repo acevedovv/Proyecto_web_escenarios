@@ -2,6 +2,11 @@
 <html>
 <head>
     <title>Lista de Escenarios Deportivos</title>
+
+    <div class="col-md-12">
+        <a href="{{ route('escenarios_deportivos.create') }}" class="btn btn-primary">Generate PDF</a>
+    </div>
+
 </head>
 <body>
     <h1>Lista de Escenarios Deportivos</h1>

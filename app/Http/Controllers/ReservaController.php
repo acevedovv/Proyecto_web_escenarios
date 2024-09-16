@@ -6,6 +6,7 @@ use App\Models\Reserva;
 use App\Models\User;   
 use App\Models\EscenarioDeportivo;  
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class ReservaController extends Controller
 {
@@ -13,6 +14,14 @@ class ReservaController extends Controller
     {
         $reservas = Reserva::all();
         return view('reservas.index', compact('reservas'));
+    }
+    
+    //Implementación de la descarga de PDF en la vista de reservas
+    public function generarPDF()
+    {
+        $reservas = Reserva::all();
+        $pdf = PDF::loadView('reservas.download', compact('reservas'));
+        return $pdf->download('reservas.pdf');
     }
 
     public function create()

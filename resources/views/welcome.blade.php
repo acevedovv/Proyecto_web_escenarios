@@ -5,6 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alquiler de Escenarios Deportivos</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .header-bg {
+            background-image: url('{{ asset('images/portada.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 0;
+        }
+    </style>
 </head>
 <body>
   
@@ -28,15 +38,42 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('escenarios_deportivos/contactanos') }}">Contacto</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="btn btn-outline-light" href="{{ route('login') }}">Iniciar Sesión</a>
-                    </li>
+
+                    <!-- Mostrar si el usuario está autenticado -->
+                    @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li>
+                                    <!-- Botón Cerrar Sesión -->
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Cerrar Sesión</button>
+                                    </form>
+                                </li>
+                                <li>
+                                    <!-- Botón Editar CRUDs -->
+                                    <a href="{{ route('home') }}" class="dropdown-item">Editar CRUDs</a>
+                                </li>
+                                <li>
+                                    <!-- Botón Perfil -->
+                                    <a href="{{ route('usuarios.index') }}" class="dropdown-item">Perfil</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="btn btn-outline-light" href="{{ route('login') }}">Iniciar Sesión</a>
+                        </li>
+                    @endauth
                 </ul>
             </div>
         </div>
     </nav>
 
-    <header class="bg-primary text-white text-center py-5">
+    <header class="header-bg">
         <div class="container">
             <h1>Bienvenido a Escenarios Deportivos</h1>
             <p class="lead">Encuentra y alquila los mejores escenarios deportivos en tu área</p>
@@ -169,7 +206,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="mensaje" class="form-label">Mensaje</label>
-                            <textarea class="form-control" id="mensaje" rows="3" required></textarea>
+                            <textarea class="form-control" id="mensaje" rows="4" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Enviar</button>
                     </form>
@@ -179,10 +216,7 @@
     </section>
 
     <footer class="bg-dark text-white text-center py-3">
-        <div class="container">
-            <p>&copy; 2024 Escenarios Deportivos. Todos los derechos reservados.</p>
-            <p><a href="#" class="text-white">Política de Privacidad</a> | <a href="#" class="text-white">Términos de Servicio</a></p>
-        </div>
+        <p>&copy; 2024 Escenarios Deportivos. Todos los derechos reservados.</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

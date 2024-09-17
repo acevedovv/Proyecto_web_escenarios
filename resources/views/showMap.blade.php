@@ -2,58 +2,53 @@
 
 @section('content')
     <div class="container">
-        <h1>Gráfico de Escenarios Deportivos</h1>
+        <h1>Gráfico de Reservas por Barrio</h1>
         <div id="myDiv" style="width:100%;height:400px;"></div> <!-- Contenedor para el gráfico -->
         
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- Inclusión de la librería Plotly -->
 
         <script>
-            // JavaScript para consumir la API y crear el gráfico
-            var nombres = [];
-            var barrios = [];  // Si quieres añadir más detalles al gráfico
-            var conteo = [];   // Puedes contar cuántos escenarios hay por barrio o por tipo, por ejemplo
+            // Variables para almacenar los datos
+            var barrios = [];
+            var conteo = {}; // Para contar las reservas por barrio
 
             // Consumo de la API
-            fetch('https://www.datos.gov.co/resource/i5z5-qhf8.json') // Reemplaza con tu URL de datos
+            fetch('https://www.datos.gov.co/resource/rdwb-5qc2.json')
                 .then(datos_obtenidos => datos_obtenidos.json())
                 .then(function transformar(datos_obtenidos) {
-                    // Para este ejemplo, simplemente contaremos la cantidad de escenarios
-                    var escenarioConteo = {};
+                    // Iteramos sobre cada dato
+                    datos_obtenidos.forEach(function agregar(datos_obtenidos) {
+                        var barrio = datos_obtenidos.barrio_escenario;
 
-                    datos_obtenidos.forEach(function(escenario) {
-                        var barrio = escenario.barrio || 'No disponible';
-                        if (escenarioConteo[barrio]) {
-                            escenarioConteo[barrio]++;
+                        // Verificamos si ya existe el barrio en el conteo
+                        if (conteo[barrio]) {
+                            conteo[barrio]++;
                         } else {
-                            escenarioConteo[barrio] = 1;
+                            conteo[barrio] = 1; // Si no existe, inicializamos en 1
                         }
                     });
 
-                    // Transformar el objeto en arrays para Plotly
-                    for (var barrio in escenarioConteo) {
-                        if (escenarioConteo.hasOwnProperty(barrio)) {
-                            barrios.push(barrio);
-                            conteo.push(escenarioConteo[barrio]);
-                        }
-                    }
+                    // Extraemos las claves (barrios) y valores (conteo de reservas)
+                    barrios = Object.keys(conteo);
+                    var reservas = Object.values(conteo);
 
-                    // Variables para las gráficas
-                    var graf1 = {
+                    // Definir el gráfico
+                    var grafico = {
+                        y: reservas,
                         x: barrios,
-                        y: conteo,
                         type: 'bar',
                     };
 
-                    var datosGraficas = [graf1];
+                    var datosGraficas = [grafico];
 
                     // Estilos de la gráfica
                     var layout = {
-                        title: 'Número de Escenarios Deportivos por Barrio',
+                        title: 'Cantidad de Reservas por Barrio',
                         xaxis: {
                             title: 'Barrio'
                         },
                         yaxis: {
-                            title: 'Número de Escenarios'
+                            title: 'Número de Reservas'
                         }
                     };
                     

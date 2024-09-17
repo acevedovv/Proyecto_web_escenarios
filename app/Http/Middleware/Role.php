@@ -27,6 +27,7 @@ class Role
 
         if (!in_array($roleName, $newRol)) {
             return abort(403, __('Unauthorized,Your role does not meet the requirements'));
+            
         }
 
         return $next($request);

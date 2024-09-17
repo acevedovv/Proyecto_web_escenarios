@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class UserController extends Controller
 {
@@ -13,6 +14,14 @@ class UserController extends Controller
         $users = User::with('role')->get();
         return view('usuarios.index', ['users' => $users]);
     }
+
+    public function generarPDF()
+    {
+        $users = User::all();
+        $pdf = Pdf::loadView('usuarios.download', compact('users'));
+        return $pdf->download('usuarios.pdf');
+    }
+    
 
     // Mostrar un usuario específico
     public function show($id)

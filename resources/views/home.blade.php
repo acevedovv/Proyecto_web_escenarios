@@ -67,6 +67,8 @@
                         </div>
 
                         <!-- Reservas Section -->
+                        <div class="row">
+                        <!-- Reservas Section -->
                         <div class="col-md-3">
                             <div class="card text-white bg-danger mb-3">
                                 <div class="card-header">Reservas</div>
@@ -77,40 +79,27 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Reportes Section -->
+                        <div class="col-md-3">
+                            <div class="card text-white bg-secondary mb-3">
+                                <div class="card-header">Reportes</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Gestionar Reportes</h5>
+                                    <p class="card-text">Crear reportes.</p>
+                                    <a href="{{ route('reportes.create') }}" class="btn btn-light">Ir a Reportes</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <hr>
+                    
 
-                    <h4>Últimos Escenarios Deportivos Registrados</h4>
-                    <!-- Aquí podrías mostrar una tabla con datos -->
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Ubicación</th>
-                                <th>Capacidad</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($escenarios as $escenario)
-                                <tr>
-                                    <td>{{ $escenario->nombre }}</td>
-                                    <td>{{ $escenario->ubicacion }}</td>
-                                    <td>{{ $escenario->capacidad }}</td>
-                                    <td>
-                                        <a href="{{ route('escenarios_deportivos.show', $escenario->id) }}" class="btn btn-sm btn-primary">Ver</a>
-                                        <a href="{{ route('escenarios_deportivos.edit', $escenario->id) }}" class="btn btn-sm btn-warning">Editar</a>
-                                        <form action="{{ route('escenarios_deportivos.destroy', $escenario->id) }}" method="POST" class="d-inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                    
+
+                   
+
+                    
                 </div>
             </div>
         </div>

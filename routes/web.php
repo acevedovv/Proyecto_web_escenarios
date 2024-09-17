@@ -101,6 +101,8 @@ Route::get('/escenarios_deportivos/contactanos', function () {
     return view('escenarios_deportivos.contactanos');
 })->name('escenarios_deportivos/contactanos');
 
+route::get('download-pdf',[EscenarioDeportivoController::class,'generarPDF'])->name('descargar-pdf');
+
 
 Route::resource('escenarios_deportivos', EscenarioDeportivoController::class);
 
@@ -154,6 +156,14 @@ Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->nam
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//----------------------Rutas para Reportes
+
+use App\Http\Controllers\ReporteController;
+
+Route::get('/reportes/create', [ReporteController::class, 'create'])->name('reportes.create');
+
 
 Route::middleware(['auth', 'role:administrador'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

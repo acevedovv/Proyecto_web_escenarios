@@ -6,7 +6,7 @@ use App\Models\Reserva;
 use App\Models\User;   
 use App\Models\EscenarioDeportivo;  
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class ReservaController extends Controller
 {

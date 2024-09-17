@@ -161,13 +161,16 @@ Route::middleware(['auth', 'role:administrador'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     
 });
-//Generar rutas necesarias para escearios deportivos
+//Generar rutas necesarias para escenarios deportivos
 Route::resource('escenariosDeportivos',EscenarioDeportivoController::class);
 Route::get('download-pdf',[EscenarioDeportivoController::class,'generarPDF'])->name('descargar-pdf');
 
 // Generar rutas necesarias para reservas
 Route::resource('reservas',ReservaController::class);
 Route::get('download-pdf',[ReservaController::class,'generarPDF'])->name('descargar-pdf');
+
+// Generar rutas necesarias para reporte de usuarios
+Route::get('usuarios/reporte', [UserController::class, 'reporte'])->name('usuarios.reporte');
 
 // Ruta para generar graficos con Chart.js
 Route::get('user-chart', [UserController::class, 'chart']);

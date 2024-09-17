@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\PDF;
 
 
 class UserController extends Controller
@@ -113,4 +114,15 @@ class UserController extends Controller
 
         return view('usuarios.chart', compact('months', 'counts'));
     }
+    // Controlador para generar un reporte de usuarios
+
+    public function reporte()
+    {
+        $users = User::all();
+
+        $pdf = PDF::loadView('usuarios.reporte', compact('users'));
+
+        return $pdf->download('reporte_usuarios.pdf');
+    }
+
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Funcionario;
 use App\Models\EscenarioDeportivo;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class EscenarioDeportivoController extends Controller
 {
@@ -12,6 +13,13 @@ class EscenarioDeportivoController extends Controller
     {
         $escenariosDeportivos = EscenarioDeportivo::all();
         return view('escenarios_deportivos.index', compact('escenariosDeportivos'));
+    }
+
+    public function generarPDF()
+    {
+        $escenariosDeportivos = EscenarioDeportivo::all();
+        $pdf = Pdf::loadView('escenarios_deportivos.download', compact('escenariosDeportivos'));
+        return $pdf->download('escenarios_deportivos.pdf');
     }
 
     public function create()
@@ -38,7 +46,7 @@ class EscenarioDeportivoController extends Controller
         // Encuentra el escenario deportivo por su ID
         $escenarioDeportivo = EscenarioDeportivo::findOrFail($id);
         // Pasar el modelo a la vista
-        return view('escenarios_deportivos.show', compact('escenarioDeportivo'));
+        return view('escenarios_deportivos.show', compact('escenarios'));
     }
 
     public function edit($id)

@@ -8,6 +8,7 @@ use App\Http\Controllers\EscenarioDeportivoController;
 use App\Http\Controllers\ReservaController;
 
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -167,3 +168,6 @@ Route::get('download-pdf',[EscenarioDeportivoController::class,'generarPDF'])->n
 // Generar rutas necesarias para reservas
 Route::resource('reservas',ReservaController::class);
 Route::get('download-pdf',[ReservaController::class,'generarPDF'])->name('descargar-pdf');
+
+// Ruta para generar graficos con Chart.js
+Route::get('user-chart', [UserController::class, 'chart']);

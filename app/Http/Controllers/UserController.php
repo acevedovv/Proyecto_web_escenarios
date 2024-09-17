@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
@@ -94,5 +96,21 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado exitosamente');
+    }
+    
+    // Crear un controlador para la vista de gráficos
+    public function chart()
+    {
+        $users = DB::table('users')
+                   ->select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
+                   ->whereYear('created_at', date('Y'))
+                   ->groupBy('month_name')
+                   ->orderBy(DB::raw("MIN(created_at)"))
+                   ->get();
+
+        $months = $users->pluck('month_name');
+        $counts = $users->pluck('count');
+
+        return view('usuarios.chart', compact('months', 'counts'));
     }
 }

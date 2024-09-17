@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\EscenarioDeportivoController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\ApiController;
 
 
 Route::get('/', function () {
@@ -169,3 +170,5 @@ Route::middleware(['auth', 'role:administrador'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     
 });
+
+Route::get('/show-Map', [ApiController::class, 'showMap'])->name('show-map');

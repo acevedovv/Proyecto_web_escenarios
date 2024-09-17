@@ -92,14 +92,12 @@
                             </div>
                         </div>
                     </div>
-
                     
-
-                    
-
-                   
-
-                    
+                        <!-- Gráfico de Reservas Button -->
+                        <div class="col-md-3 mt-3">
+                            <a href="{{ route('show-map') }}" class="btn btn-primary">Ver Gráfico de Reservas</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

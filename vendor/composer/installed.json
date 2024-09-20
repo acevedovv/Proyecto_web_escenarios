@@ -1707,7 +1707,7 @@
                     ]
                 }
             },
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "psr-4": {
                     "LaravelFrontendPresets\\MaterialPreset\\": "src/"
@@ -1938,7 +1938,7 @@
                     ]
                 }
             },
-            "installation-source": "source",
+            "installation-source": "dist",
             "autoload": {
                 "files": [
                     "helpers.php"

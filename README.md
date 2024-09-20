@@ -1,27 +1,55 @@
-//////////////////////////////
+# Proyecto Web Escenarios
 
+Este proyecto es una aplicación web desarrollada con Laravel.
 
+## Integrantes
 
+- Julian Acevedo
+- Juan Manuel Garcia
+- Jhon Edison Muñoz
 
+## Configuración del Proyecto
 
-#url git hub: https://github.com/acevedovv/Proyecto_web_escenarios.git
+1. Clona el repositorio:
+    ```bash
+    git clone https://github.com/acevedovv/Proyecto_web_escenarios.git
+    ```
 
+2. Navega al directorio del proyecto:
+    ```bash
+    cd tu_repositorio
+    ```
 
+3. Instala las dependencias:
+    ```bash
+    composer install
+    ```
 
+4. Copia el archivo `.env.example` a `.env` y configura tus variables de entorno:
+    ```bash
+    cp .env.example .env
+    ```
 
-//////////////////////////
+5. Genera la clave de la aplicación:
+    ```bash
+    php artisan key:generate
+    ```
 
+6. Configura la base de datos en el archivo `.env`.
 
+7. Ejecuta las migraciones:
+    ```bash
+    php artisan migrate
+    ```
 
+8. Inicia el servidor de desarrollo:
+    ```bash
+    php artisan serve
+    ```
 
+## Uso
 
-
-
-
-
-
-
-
+Accede a la aplicación en tu navegador en `http://localhost:8000`.
 
 
 

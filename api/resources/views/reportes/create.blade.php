@@ -15,7 +15,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Revisa las reservas existentes</h5>
                     <p class="card-text">Consulta la lista de reservas para incluir información en el reporte.</p>
-                    <a href="{{ route('reservas.index') }}" class="btn btn-light">Crear Reporte</a>
+                    <a href="{{ route('descargar-usuariopdf') }}" class="btn btn-light">Crear Reporte de Usuarios</a>
 
                 </div>
             </div>

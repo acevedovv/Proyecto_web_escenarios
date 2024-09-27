@@ -104,6 +104,7 @@ Route::get('/escenarios_deportivos/contactanos', function () {
 
 route::get('download-pdf',[EscenarioDeportivoController::class,'generarPDF'])->name('descargar-pdf');
 
+Route::get('download-user-pdf', [UserController::class, 'generarPDF'])->name('descargar-usuariopdf');
 
 Route::resource('escenarios_deportivos', EscenarioDeportivoController::class);
 

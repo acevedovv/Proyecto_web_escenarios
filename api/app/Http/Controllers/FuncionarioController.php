@@ -10,8 +10,9 @@ class FuncionarioController extends Controller
     public function index()
     {
         $funcionarios = Funcionario::all();
-        return view('funcionarios.index', compact('funcionarios'));
+        return response()->json($funcionarios);
     }
+
 
     public function create()
     {

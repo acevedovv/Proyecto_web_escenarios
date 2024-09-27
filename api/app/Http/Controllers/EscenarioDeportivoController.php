@@ -88,19 +88,18 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class EscenarioDeportivoController extends Controller
 {
-    // // Método para listar todos los escenarios deportivos en formato JSON
+    // Método para listar todos los escenarios deportivos en formato JSON
+     public function index()
+     {
+         $escenariosDeportivos = EscenarioDeportivo::with('funcionario')->get(); // Incluye datos de funcionario si existe relación
+         return response()->json($escenariosDeportivos);
+     }
+
     // public function index()
     // {
-    //     $escenariosDeportivos = EscenarioDeportivo::with('funcionario')->get(); // Incluye datos de funcionario si existe relación
+    //     $escenariosDeportivos = EscenarioDeportivo::all();
     //     return response()->json($escenariosDeportivos);
     // }
-
-    public function index()
-    {
-        $escenariosDeportivos = EscenarioDeportivo::all();
-        return response()->json($escenariosDeportivos);
-    }
-
 
     // Método para crear un nuevo escenario deportivo
     public function store(Request $request)

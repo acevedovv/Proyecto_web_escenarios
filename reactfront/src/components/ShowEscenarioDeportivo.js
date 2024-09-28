@@ -71,4 +71,4 @@ const ShowEscenarioDeportivo = () => {
   )
 }
 
-export default ShowEscenarioDeportivo
+export default ShowEscenarioDeportivo;

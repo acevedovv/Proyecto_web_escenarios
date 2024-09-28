@@ -10,26 +10,41 @@ class RoleController extends Controller
     // Mostrar una lista de roles
     public function index()
     {
-        $roles = Role::all();
-        return view('roles.index', compact('roles'));
+        $roles = Role::all(); // Obtiene todos los roles
+
+        // Verifica si se obtuvieron roles y devuelve una respuesta JSON adecuada
+        if ($roles->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => [],
+                'message' => 'No roles found'
+            ], 200);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $roles,
+            'message' => 'Roles retrieved successfully'
+        ], 200);
     }
 
-    public function create()
-    {
-        // Solo retorna la vista para crear un nuevo rol
-        return view('roles.create');
-    }
-    
     // Mostrar un rol específico
     public function show($id)
     {
         $role = Role::find($id);
 
         if (!$role) {
-            return redirect()->route('roles.index')->with('error', 'Role not found');
+            return response()->json([
+                'success' => false,
+                'message' => 'Role not found',
+            ], 404);
         }
 
-        return view('roles.show', compact('role'));
+        return response()->json([
+            'success' => true,
+            'data' => $role,
+            'message' => 'Role retrieved successfully'
+        ], 200);
     }
 
     // Crear un nuevo rol
@@ -42,19 +57,11 @@ class RoleController extends Controller
 
         $role = Role::create($request->all());
 
-        return redirect()->route('roles.index')->with('success', 'Role created successfully');
-    }
-
-    // Mostrar formulario de edición
-    public function edit($id)
-    {
-        $role = Role::find($id);
-
-        if (!$role) {
-            return redirect()->route('roles.index')->with('error', 'Role not found');
-        }
-
-        return view('roles.edit', compact('role'));
+        return response()->json([
+            'success' => true,
+            'message' => 'Role created successfully',
+            'data' => $role,
+        ], 201);
     }
 
     // Actualizar un rol existente
@@ -63,7 +70,10 @@ class RoleController extends Controller
         $role = Role::find($id);
 
         if (!$role) {
-            return redirect()->route('roles.index')->with('error', 'Role not found');
+            return response()->json([
+                'success' => false,
+                'message' => 'Role not found',
+            ], 404);
         }
 
         $request->validate([
@@ -73,20 +83,30 @@ class RoleController extends Controller
 
         $role->update($request->all());
 
-        return redirect()->route('roles.index')->with('success', 'Role updated successfully');
+        return response()->json([
+            'success' => true,
+            'message' => 'Role updated successfully',
+            'data' => $role,
+        ], 200);
     }
 
     // Eliminar un rol
     public function destroy($id)
     {
         $role = Role::find($id);
-
+    
         if (!$role) {
-            return redirect()->route('roles.index')->with('error', 'Role not found');
+            return response()->json([
+                'success' => false,
+                'message' => 'Role not found',
+            ], 404);
         }
-
+    
         $role->delete();
-
-        return redirect()->route('roles.index')->with('success', 'Role deleted successfully');
+    
+        return response()->json([
+            'success' => true,
+            'message' => 'Role deleted successfully',
+        ], 200);
     }
 }

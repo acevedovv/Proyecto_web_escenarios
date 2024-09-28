@@ -28,14 +28,19 @@ const CreateEscenarioDeportivo = () => {
         fetchFuncionarios();
     }, []);
 
+    // Función para almacenar el nuevo escenario
     const store = async (e) => {
         e.preventDefault();
-        await axios.post(`${endpoint}/escenarios_deportivos`, {
-            nombre_esc: nombre, 
-            fecha_dis: fecha,    
-            id_fun: selectedFuncionario 
-        });
-        navigate('/');
+        try {
+            await axios.post(`${endpoint}/escenarios_deportivos`, {
+                nombre_esc: nombre, 
+                fecha_dis: fecha,    
+                id_fun: selectedFuncionario 
+            });
+            navigate('/escenarios_deportivos'); // Redirigir a la lista de escenarios después de crear
+        } catch (error) {
+            console.error("Error al crear el escenario deportivo:", error);
+        }
     };
 
     return (

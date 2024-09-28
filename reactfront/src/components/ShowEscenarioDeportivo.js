@@ -32,7 +32,7 @@ const ShowEscenarioDeportivo = () => {
   return (
     <div>
       <div className='d-grid gap-2'>
-        <Link to="/create" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Create</Link>
+        <Link to="create" className='btn btn-success btn-lg mt-2 mb-2 text-white'>Create</Link>
       </div>
 
       <table className='table table-striped'>
@@ -60,7 +60,7 @@ const ShowEscenarioDeportivo = () => {
                 ) : 'No asignado'}
               </td>
               <td>
-                <Link to={`/edit/${escenario.id_esc}`} className='btn btn-warning'>Edit</Link>
+                <Link to={`edit/${escenario.id_esc}`} className='btn btn-warning'>Edit</Link>
                 <button onClick={() => deleteEscenarioDeportivo(escenario.id_esc)} className='btn btn-danger'>Delete</button>
               </td>
             </tr>

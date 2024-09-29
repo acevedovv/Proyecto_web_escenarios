@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Lista de Funcionarios</h1>
-    <a href="{{ route('funcionarios.create') }}">Agregar Nuevo Funcionario</a>
+    <a href="{{ route('funcionarios.create') }}">Agregar un Nuevo Funcionario</a>
     <table border="1">
         <thead>
             <tr>

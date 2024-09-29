@@ -14,6 +14,7 @@ class Funcionario extends Model
 
     // Los atributos que se pueden asignar masivamente
     protected $fillable = [
+        'id_fun',
         'nombre_fun',
         'user_id',
     ];

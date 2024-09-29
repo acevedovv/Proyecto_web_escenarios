@@ -7,66 +7,69 @@ use Illuminate\Http\Request;
 
 class FuncionarioController extends Controller
 {
-    public function index()
-    {
-        $funcionarios = Funcionario::all();
-        return view('funcionarios.index', compact('funcionarios'));
-    }
+     public function index()
+     {
+         $funcionarios = Funcionario::all();
+         return view('funcionarios.index', compact('funcionarios'));
+     }
 
-    public function create()
-    {
-        // Obtén todos los usuarios desde la base de datos
-        $users = User::all(); 
 
-         // Pasa la variable $users a la vista 'funcionarios.create'
-        return view('funcionarios.create', compact('users'));
-    }
+     public function create()
+     {
+         // Obtén todos los usuarios desde la base de datos
+         $users = User::all(); 
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nombre_fun' => 'required|string|max:255',
-            'user_id' => 'required|exists:users,id',
-        ]);
+          // Pasa la variable $users a la vista 'funcionarios.create'
+         return view('funcionarios.create', compact('users'));
+     }
 
-        Funcionario::create($request->all());
+     public function store(Request $request)
+     {
+         $request->validate([
+             'nombre_fun' => 'required|string|max:255',
+             'user_id' => 'required|exists:users,id',
+         ]);
 
-        return redirect()->route('funcionarios.index');
-    }
+         Funcionario::create($request->all());
 
-    public function show(Funcionario $funcionario)
-    {
-        return view('funcionarios.show', compact('funcionario'));
-    }
+         return redirect()->route('funcionarios.index');
+     }
 
-    public function edit($id_fun)
-    {
-        // Buscar el funcionario por su id
-        $funcionario = Funcionario::findOrFail($id_fun);
+     public function show(Funcionario $funcionario)
+     {
+         return view('funcionarios.show', compact('funcionario'));
+     }
 
-        // Obtener todos los usuarios para llenar el dropdown o la lista en la vista
-        $users = User::all();
+     public function edit($id_fun)
+     {
+         // Buscar el funcionario por su id
+         $funcionario = Funcionario::findOrFail($id_fun);
 
-        // Pasar el funcionario y los usuarios a la vista
-        return view('funcionarios.edit', compact('funcionario', 'users'));
-    }
+         // Obtener todos los usuarios para llenar el dropdown o la lista en la vista
+         $users = User::all();
 
-    public function update(Request $request, Funcionario $funcionario)
-    {
-        $request->validate([
-            'nombre_fun' => 'required|string|max:255',
-            'user_id' => 'required|exists:users,id',
-        ]);
+         // Pasar el funcionario y los usuarios a la vista
+         return view('funcionarios.edit', compact('funcionario', 'users'));
+     }
 
-        $funcionario->update($request->all());
+     public function update(Request $request, Funcionario $funcionario)
+     {
+         $request->validate([
+             'nombre_fun' => 'required|string|max:255',
+             'user_id' => 'required|exists:users,id',
+         ]);
 
-        return redirect()->route('funcionarios.index');
-    }
+         $funcionario->update($request->all());
 
-    public function destroy(Funcionario $funcionario)
-    {
-        $funcionario->delete();
+         return redirect()->route('funcionarios.index');
+     }
 
-        return redirect()->route('funcionarios.index');
-    }
+     public function destroy(Funcionario $funcionario)
+     {
+         $funcionario->delete();
+
+         return redirect()->route('funcionarios.index');
+     }
+
+    
 }

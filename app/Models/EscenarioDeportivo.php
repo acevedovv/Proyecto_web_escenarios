@@ -35,5 +35,7 @@ class EscenarioDeportivo extends Model
     {
         return $this->hasMany(Reserva::class, 'id_esc');
     }
+
+    
     
 }

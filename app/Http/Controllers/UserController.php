@@ -32,7 +32,7 @@ class UserController extends Controller
             return redirect()->route('usuarios.index')->with('error', 'Usuario no encontrado');
         }
 
-        return view('usuarios.show', ['user' => $user]);
+        return view('usuarios.perfil', compact('user'));
     }
 
     // Crear un nuevo usuario (Formulario)
@@ -88,7 +88,7 @@ class UserController extends Controller
 
         $user->update($request->all());
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado exitosamente');
+        return redirect('/')->with('success', 'Usuario actualizado exitosamente');
     }
 
     // Eliminar un usuario

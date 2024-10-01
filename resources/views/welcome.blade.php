@@ -55,11 +55,16 @@
                                 </li>
                                 <li>
                                     <!-- Botón Editar CRUDs -->
+                                    @if(auth()->user()->role->nombre_rol === 'administrador') <!-- Reemplaza 'Administrador' con el rol deseado -->
                                     <a href="{{ route('home') }}" class="dropdown-item">Editar CRUDs</a>
+                                @endif
+                                    
                                 </li>
                                 <li>
                                     <!-- Botón Perfil -->
-                                    <a href="{{ route('usuarios.index') }}" class="dropdown-item">Perfil</a>
+                                    <a href="{{ route('perfil', auth()->user()->id) }} "class="dropdown-item">Mi Perfil</a>
+                                    
+                                    
                                 </li>
                             </ul>
                         </li>

@@ -17,11 +17,8 @@ class CreateEscenariosDeportivosTable extends Migration
             $table->id('id_esc');
             $table->date('fecha_dis');
             $table->string('nombre_esc');
-            $table->unsignedBigInteger('id_fun');
             $table->timestamps();
             
-            // Definir la relación con la tabla funcionarios
-            $table->foreign('id_fun')->references('id_fun')->on('funcionarios');
         });
     }
 

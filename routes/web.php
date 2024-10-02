@@ -42,8 +42,13 @@ Route::delete('/roles/{rol}', [RoleController::class, 'destroy'])->name('roles.d
 //---------------------- Rutas para Usuarios
 Route::resource('usuarios', UserController::class);
 
+Route::middleware(['auth', 'role:administrador'])->group(function () {
+    Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
+    
+});
+
 // Mostrar lista de usuarios
-Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
+
 
 // Mostrar formulario para crear un nuevo usuario
 Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');
@@ -63,30 +68,9 @@ Route::post('/usuarios/{usuario}', [UserController::class, 'update'])->name('usu
 // Eliminar un usuario existente
 Route::delete('/usuarios/{usuario}', [UserController::class, 'destroy'])->name('usuarios.destroy');
 
-//----------------------Rutas para Funcionarios
-
-Route::resource('funcionarios', FuncionarioController::class);
-
-// Mostrar lista de roles
-Route::get('/funcionarios', [FuncionarioController::class, 'index'])->name('funcionarios.index');
-
-// Mostrar formulario para crear un nuevo funcionario
-Route::get('/funcionarios/create', [FuncionarioController::class, 'create'])->name('funcionarios.create');
-
-// Guardar un nuevo funcionario
-Route::post('/funcionarios', [FuncionarioController::class, 'store'])->name('funcionarios.store');
-
-//Mostar un funcionario específico
-Route::get('/funcionarios/{funcionario}', [FuncionarioController::class, 'show'])->name('funcionarios.show');
-
-// Mostrar formulario para editar un funcionario existente
-Route::get('/funcionarios/{funcionario}/edit', [FuncionarioController::class, 'edit'])->name('funcionarios.edit');
-
-// Actualizar un funcionario existente
-Route::post('/funcionarios/{funcionario}', [FuncionarioController::class, 'update'])->name('funcionarios.update');
-
-// Eliminar un funcionario existente
-Route::delete('/funcionarios/{funcionario}', [FuncionarioController::class, 'destroy'])->name('funcionarios.destroy');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/usuarios/perfil/{usuario}', [UserController::class, 'show'])->name('perfil');
+});
 
 //----------------------Rutas para Escenarios Deportivos
 
@@ -154,6 +138,7 @@ Route::post('/reservas/{reserva}', [ReservaController::class, 'update'])->name('
 // Eliminar una reserva existente
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
 
+Route::get('/reservas/eventos', [ReservaController::class, 'eventos']);
 
 Auth::routes();
 
@@ -172,4 +157,7 @@ Route::middleware(['auth', 'role:administrador'])->group(function () {
     
 });
 
+
+
 Route::get('/show-Map', [ApiController::class, 'showMap'])->name('show-map');
+

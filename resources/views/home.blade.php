@@ -42,17 +42,7 @@
                             </div>
                         </div>
 
-                        <!-- Funcionarios Section -->
-                        <div class="col-md-3">
-                            <div class="card text-white bg-primary mb-3">
-                                <div class="card-header">Funcionarios</div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Gestionar Funcionarios</h5>
-                                    <p class="card-text">Ver, crear, editar o eliminar funcionarios.</p>
-                                    <a href="{{ route('funcionarios.index') }}" class="btn btn-light">Ir a Funcionarios</a>
-                                </div>
-                            </div>
-                        </div>
+                       
 
                         <!-- Escenarios Deportivos Section -->
                         <div class="col-md-3">

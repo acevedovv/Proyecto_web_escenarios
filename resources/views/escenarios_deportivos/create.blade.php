@@ -13,13 +13,8 @@
         <label for="fecha_dis">Fecha de Disponibilidad:</label>
         <input type="date" name="fecha_dis" id="fecha_dis" required>
         <br>
-        <label for="id_fun">Funcionario:</label>
-        <select name="id_fun" id="id_fun" required>
-            @foreach($funcionarios as $funcionario)
-                <option value="{{ $funcionario->id_fun }}">{{ $funcionario->nombre_fun }}</option>
-            @endforeach
-        </select>
-        <br>
+        
+       
         <button type="submit">Guardar</button>
     </form>
     <a href="{{ route('escenarios_deportivos.index') }}">Volver a la lista</a>

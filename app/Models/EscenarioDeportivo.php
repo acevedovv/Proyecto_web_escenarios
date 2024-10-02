@@ -24,11 +24,8 @@ class EscenarioDeportivo extends Model
         'fecha_dis' => 'datetime',
     ];
 
-    // La relación con la tabla funcionarios
-    public function funcionario()
-    {
-        return $this->belongsTo(Funcionario::class, 'id_fun', 'id_fun');
-    }
+
+    
 
     // La relación con la tabla reservas
     public function reservas()

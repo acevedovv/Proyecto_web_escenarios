@@ -66,8 +66,13 @@ class RegisterController extends Controller
         'num_usu' => $data['num_usu'],
         'email' => $data['email'],
         'password' => Hash::make($data['password']),
-        'id_rol' => $data['id_rol'] ?? 2, // Valor por defecto 2 si no se selecciona uno
+        //'id_rol' => $data['id_rol'] ?? 2, // Valor por defecto 2 si no se selecciona uno
     ]);
+
+     // Asignar el rol automáticamente
+     $user->assignRole('usuario'); // Asegúrate de que el rol 'usuario' exista
+    
+     return $user;
 }
 
 }

@@ -80,7 +80,7 @@
                             </div>
                         </div>
 
-                        <!-- Selección de Rol -->
+                        <!-- Selección de Rol 
                         <div class="row mb-3">
                             <label for="id_rol" class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
 
@@ -96,7 +96,9 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> 
+                        Desactivar la opción de elección de Rol por parte del Usuario que se registra en el aplicativo.
+                        -->
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

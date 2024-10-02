@@ -5,115 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar Reserva</title>
     
+    <!-- Importar Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Importar FullCalendar CSS y JS -->
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
 
-    <!-- Estilos personalizados para ajustar el tamaño del calendario -->
     <style>
         #calendar {
-            max-width: 600px;
-            height: 400px;
+            max-width: 900px;
             margin: 0 auto;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Agregar Reserva</h1>
+    <div class="container mt-5">
+        <h1 class="text-center">Agregar Reserva</h1>
 
-    @if (session('success'))
-    <div style="color: green;">
-        {{ session('success') }}
-    </div>
-    @endif
-
-    @if (session('error'))
-        <div style="color: red;">
-            {{ session('error') }}
+        @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
-    @endif
+        @endif
 
-    <div id="calendar"></div>
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
 
-    <form action="{{ route('reservas.store') }}" method="POST">
-        @csrf
-        <label for="fecha_res">Fecha de Reserva:</label>
-        <input type="date" name="fecha_res" id="fecha_res" required>
-        <br>
-        
-        <label for="hora_res">Hora de Inicio:</label>
-        <input type="time" name="hora_res" id="hora_res" required>
-        <br>
+        <div id="calendar"></div>
 
-        <label for="user_id">Usuario:</label>
-        <select name="user_id" id="user_id" required>
-            @foreach($users as $user)
-                <option value="{{ $user->id }}">{{ $user->nombre_usu }}</option>
-            @endforeach
-        </select>
-        <br>
+        <form action="{{ route('reservas.store') }}" method="POST" class="mt-4">
+            @csrf
+            <div class="form-group">
+                <label for="fecha_res">Fecha de Reserva:</label>
+                <input type="date" name="fecha_res" id="fecha_res" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="hora_res">Hora de Inicio:</label>
+                <input type="time" name="hora_res" id="hora_res" class="form-control" required>
+            </div>
 
-        <label for="id_esc">Escenario Deportivo:</label>
-        <select name="id_esc" id="id_esc" required>
-            @foreach($escenariosDeportivos as $escenario)
-                <option value="{{ $escenario->id_esc }}">{{ $escenario->nombre_esc }}</option>
-            @endforeach
-        </select>
-        <br>
+            @if(auth()->user()->role->nombre_rol === 'administrador')
+                <div class="form-group">
+                    <label for="user_id">Usuario:</label>
+                    <select name="user_id" id="user_id" class="form-control" required>
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->nombre_usu }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
 
-        <button type="submit">Guardar</button>
-    </form>
-    <a href="{{ route('reservas.index') }}">Volver a la lista</a>
+            <div class="form-group">
+                <label for="id_esc">Escenario Deportivo:</label>
+                <select name="id_esc" id="id_esc" class="form-control" required>
+                    @foreach($escenariosDeportivos as $escenario)
+                        <option value="{{ $escenario->id_esc }}">{{ $escenario->nombre_esc }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{{ route('reservas.index') }}" class="btn btn-secondary">Volver a la lista</a>
+        </form>
+    </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         const calendarEl = document.getElementById('calendar');
         const fechaResInput = document.getElementById('fecha_res');
         const horaResInput = document.getElementById('hora_res');
-
-        // Cargar reservas desde el backend
-        const reservasExistentes = @json($reservas).map(reserva => ({
-            title: 'Reservado', // Texto que aparecerá en el calendario
-            start: `${reserva.fecha_res}T${reserva.hora_res}`, // Fecha y hora de inicio
-            end: `${reserva.fecha_res}T${reserva.hora_fin}`, // Fecha y hora de fin
-            backgroundColor: 'red', // Color de fondo
-            borderColor: 'darkred', // Color del borde
-        }));
+        const escenarioSelect = document.getElementById('id_esc');
 
         const calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             selectable: true,
-            events: reservasExistentes, // Cargar las reservas
+            events: [],
             select: function(info) {
-                // Comprobar si la selección se solapa con algún evento existente
-                const isOverlapping = reservasExistentes.some(reserva => {
-                    return (
-                        (info.start >= new Date(reserva.start) && info.start < new Date(reserva.end)) ||
-                        (info.end > new Date(reserva.start) && info.end <= new Date(reserva.end)) ||
-                        (info.start <= new Date(reserva.start) && info.end >= new Date(reserva.end))
-                    );
-                });
-
-                if (isOverlapping) {
-                    alert('Este rango de tiempo ya está reservado.');
-                } else {
-                    const selectedDate = info.startStr.split('T')[0];
-                    const selectedTime = info.startStr.split('T')[1]?.slice(0, 5) || '00:00';
-                    fechaResInput.value = selectedDate;
-                    horaResInput.value = selectedTime;
-                }
+                const selectedDate = info.startStr.split('T')[0];
+                const selectedTime = info.startStr.split('T')[1]?.slice(0, 5) || '00:00';
+                fechaResInput.value = selectedDate;
+                horaResInput.value = selectedTime;
             },
             headerToolbar: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
+            }
         });
 
-        calendar.render(); // Renderizar el calendario
+        function loadReservations(escenarioId) {
+            fetch(`/reservas/eventos/${escenarioId}`)
+                .then(response => response.json())
+                .then(reservas => {
+                    calendar.removeAllEvents();
+                    reservas.forEach(reserva => {
+                        calendar.addEvent({
+                            title: 'Reservado',
+                            start: `${reserva.fecha_res}T${reserva.hora_res}`,
+                            end: `${reserva.fecha_res}T${reserva.hora_fin}`,
+                            backgroundColor: 'red',
+                            borderColor: 'darkred',
+                        });
+                    });
+                })
+                .catch(error => console.error('Error al cargar reservas:', error));
+        }
+
+        loadReservations(escenarioSelect.value);
+
+        escenarioSelect.addEventListener('change', function() {
+            loadReservations(this.value);
+        });
+
+        calendar.render();
     });
-</script>
-
-
+    </script>
 </body>
 </html>

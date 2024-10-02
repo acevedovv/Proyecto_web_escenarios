@@ -140,6 +140,9 @@ Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->nam
 
 Route::get('/reservas/eventos', [ReservaController::class, 'eventos'])->name('reservas.eventos');
 
+Route::get('/reservas/eventos/{id_esc}', [ReservaController::class, 'eventosPorEscenario']);
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

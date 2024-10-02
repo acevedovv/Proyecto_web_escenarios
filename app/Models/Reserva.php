@@ -21,7 +21,11 @@ class Reserva extends Model
         'id_esc',
     ];
 
-    protected $dates = ['fecha_res', 'fecha_dev'];
+    // Uso de casts para fechas
+    protected $casts = [
+        'fecha_res' => 'datetime', // Asegúrate que este sea un datetime
+        'fecha_dev' => 'datetime', // Si tienes una hora de devolución, define aquí también
+    ];
 
     // La relación con la tabla clientes
     public function user()
@@ -35,3 +39,4 @@ class Reserva extends Model
         return $this->belongsTo(EscenarioDeportivo::class, 'id_esc', 'id_esc');
     }
 }
+

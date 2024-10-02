@@ -138,7 +138,7 @@ Route::post('/reservas/{reserva}', [ReservaController::class, 'update'])->name('
 // Eliminar una reserva existente
 Route::delete('/reservas/{reserva}', [ReservaController::class, 'destroy'])->name('reservas.destroy');
 
-Route::get('/reservas/eventos', [ReservaController::class, 'eventos']);
+Route::get('/reservas/eventos', [ReservaController::class, 'eventos'])->name('reservas.eventos');
 
 Auth::routes();
 

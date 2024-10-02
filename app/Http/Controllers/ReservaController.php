@@ -16,86 +16,100 @@ class ReservaController extends Controller
     }
 
     public function create()
-    {
-        // Obtén todos los usuarios desde la base de datos
-        $users = User::all();
-        $escenariosDeportivos = EscenarioDeportivo::all();
+{
+    // Obtener todos los usuarios
+    $users = User::all();
+    
+    // Obtener todos los escenarios deportivos
+    $escenariosDeportivos = EscenarioDeportivo::all();
 
-        // Pasar los clientes y escenarios deportivos a la vista
-        return view('reservas.create', compact('users', 'escenariosDeportivos'));
-    }
+    // Obtener todas las reservas existentes con la relación EscenarioDeportivo
+    $reservas = Reserva::with('escenarioDeportivo')->get()->map(function ($reserva) {
+        return [
+            'escenario' => $reserva->escenarioDeportivo->nombre_esc,
+            'fecha_res' => $reserva->fecha_res->format('Y-m-d'),
+            'hora_res' => $reserva->fecha_res->format('H:i'), // Hora de inicio
+            'hora_fin' => $reserva->fecha_res->addHours(2)->format('H:i'), // Añadir 2 horas a la hora de inicio
+        ];
+    });
 
-    public function store(Request $request)
-    {
-        // Validar que se reciba la fecha y la hora
-        $request->validate([
-            'fecha_res' => 'required|date',
-            'hora_res' => 'required|date_format:H:i',
-            'user_id' => 'required|exists:users,id',
-            'id_esc' => 'required|exists:escenarios_deportivos,id_esc',
-        ]);
-    
-        // Combinar la fecha de reserva y la hora de inicio
-        $fechaInicio = $request->fecha_res . ' ' . $request->hora_res;
-    
-        try {
-            // Crear el objeto Carbon para manejar las fechas
-            $fechaInicioCarbon = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $fechaInicio);
-            
-            // Añadir 2 horas para obtener la fecha de devolución
-            $fechaFin = $fechaInicioCarbon->copy()->addHours(2);
-    
-            // Verificar si ya existe una reserva en ese horario para el mismo escenario
-            $conflictoReserva = Reserva::where('id_esc', $request->id_esc)
-                ->where(function ($query) use ($fechaInicioCarbon, $fechaFin) {
-                    $query->where(function ($q) use ($fechaInicioCarbon, $fechaFin) {
-                        // Verificar si hay reservas que comienzan o terminan en el rango de la nueva reserva
-                        $q->whereBetween('fecha_res', [$fechaInicioCarbon, $fechaFin])
-                          ->orWhereBetween('fecha_dev', [$fechaInicioCarbon, $fechaFin])
-                          ->orWhere(function ($q) use ($fechaInicioCarbon, $fechaFin) {
-                              $q->where('fecha_res', '<', $fechaFin)
-                                ->where('fecha_dev', '>', $fechaInicioCarbon);
-                          });
-                    });
-                })
-                ->exists();
-    
-            if ($conflictoReserva) {
-                return back()->with('error', 'No se puede reservar en este horario porque ya hay una reserva realizada.');
-            }
-    
-            // Crear la reserva si no hay conflictos de horario
-            Reserva::create([
-                'fecha_res' => $fechaInicioCarbon,
-                'fecha_dev' => $fechaFin,
-                'user_id' => $request->user_id,
-                'id_esc' => $request->id_esc,
-            ]);
-    
-            return redirect()->route('reservas.index')->with('success', 'Reserva realizada con éxito.');
-    
-        } catch (\Exception $e) {
-            // Manejar el error y mostrar un mensaje
-            \Log::error("Error al crear la reserva: " . $e->getMessage());
-            return back()->with('error', 'Error al crear la reserva. Verifica los datos ingresados.');
+    // Pasar las variables a la vista
+    return view('reservas.create', compact('users', 'escenariosDeportivos', 'reservas'));
+}
+
+
+
+
+
+
+
+public function store(Request $request)
+{
+    // Validar los datos de la reserva
+    $request->validate([
+        'fecha_res' => 'required|date',
+        'hora_res' => 'required|date_format:H:i',
+        'user_id' => 'required|exists:users,id',
+        'id_esc' => 'required|exists:escenarios_deportivos,id_esc',
+    ]);
+
+    // Combinar la fecha y la hora de inicio
+    $fechaInicio = $request->fecha_res . ' ' . $request->hora_res;
+
+    try {
+        $fechaInicioCarbon = \Carbon\Carbon::createFromFormat('Y-m-d H:i', $fechaInicio);
+        $fechaFin = $fechaInicioCarbon->copy()->addHours(2); // La reserva dura 2 horas
+
+        // Verificar si ya existe una reserva en ese horario para el mismo escenario
+        $conflictoReserva = Reserva::where('id_esc', $request->id_esc)
+            ->where(function ($query) use ($fechaInicioCarbon, $fechaFin) {
+                $query->whereBetween('fecha_res', [$fechaInicioCarbon, $fechaFin])
+                      ->orWhereBetween('fecha_dev', [$fechaInicioCarbon, $fechaFin])
+                      ->orWhere(function ($q) use ($fechaInicioCarbon, $fechaFin) {
+                          $q->where('fecha_res', '<', $fechaFin)
+                            ->where('fecha_dev', '>', $fechaInicioCarbon);
+                      });
+            })
+            ->exists();
+
+        if ($conflictoReserva) {
+            return back()->with('error', 'No se puede reservar en este horario porque ya hay una reserva realizada.');
         }
+
+        // Crear la reserva si no hay conflictos
+        Reserva::create([
+            'fecha_res' => $fechaInicioCarbon,
+            'fecha_dev' => $fechaFin,
+            'user_id' => $request->user_id,
+            'id_esc' => $request->id_esc,
+        ]);
+
+        return redirect()->route('reservas.create')->with('success', 'Reserva realizada con éxito.');
+
+    } catch (\Exception $e) {
+        \Log::error("Error al crear la reserva: " . $e->getMessage());
+        return back()->with('error', 'Error al crear la reserva. Verifica los datos ingresados.');
     }
+}
+
+
+
 
     public function eventos()
 {
-    $reservas = Reserva::with('escenarioDeportivo') // Asegúrate de incluir la relación
-        ->get()
-        ->map(function($reserva) {
-            return [
-                'title' => 'Reservado',
-                'start' => $reserva->fecha_res,
-                'end' => $reserva->fecha_dev,
-                'color' => 'red', // Color para el bloque reservado
-            ];
-        });
+    $reservas = Reserva::with('escenarioDeportivo')->get()->map(function ($reserva) {
+        return [
+            'title' => 'Reservado',  // Texto que aparecerá en el calendario
+            'start' => $reserva->fecha_res . 'T' . $reserva->hora_res, // Formato ISO
+            'end' => $reserva->fecha_res . 'T' . $reserva->hora_fin,   // Formato ISO
+            'color' => 'red',         // Color del evento
+        ];
+    });
 
     return response()->json($reservas);
 }
+
+
     
     
 

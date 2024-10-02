@@ -45,12 +45,19 @@
         <input type="time" name="hora_res" id="hora_res" required>
         <br>
 
-        <label for="user_id">Usuario:</label>
-        <select name="user_id" id="user_id" required>
+
+        @if(auth()->user()->role->nombre_rol === 'administrador') <!-- Reemplaza 'Administrador' con el rol deseado -->
+            <label for="user_id">Usuario:</label>
+            <select name="user_id" id="user_id" required>
+
             @foreach($users as $user)
                 <option value="{{ $user->id }}">{{ $user->nombre_usu }}</option>
             @endforeach
+
         </select>
+        @endif
+
+        
         <br>
 
         <label for="id_esc">Escenario Deportivo:</label>
@@ -59,6 +66,7 @@
                 <option value="{{ $escenario->id_esc }}">{{ $escenario->nombre_esc }}</option>
             @endforeach
         </select>
+
         <br>
 
         <button type="submit">Guardar</button>
@@ -67,51 +75,61 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const calendarEl = document.getElementById('calendar');
-        const fechaResInput = document.getElementById('fecha_res');
-        const horaResInput = document.getElementById('hora_res');
+    const calendarEl = document.getElementById('calendar');
+    const fechaResInput = document.getElementById('fecha_res');
+    const horaResInput = document.getElementById('hora_res');
+    const escenarioSelect = document.getElementById('id_esc');
 
-        // Cargar reservas desde el backend
-        const reservasExistentes = @json($reservas).map(reserva => ({
-            title: 'Reservado', // Texto que aparecerá en el calendario
-            start: `${reserva.fecha_res}T${reserva.hora_res}`, // Fecha y hora de inicio
-            end: `${reserva.fecha_res}T${reserva.hora_fin}`, // Fecha y hora de fin
-            backgroundColor: 'red', // Color de fondo
-            borderColor: 'darkred', // Color del borde
-        }));
-
-        const calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            selectable: true,
-            events: reservasExistentes, // Cargar las reservas
-            select: function(info) {
-                // Comprobar si la selección se solapa con algún evento existente
-                const isOverlapping = reservasExistentes.some(reserva => {
-                    return (
-                        (info.start >= new Date(reserva.start) && info.start < new Date(reserva.end)) ||
-                        (info.end > new Date(reserva.start) && info.end <= new Date(reserva.end)) ||
-                        (info.start <= new Date(reserva.start) && info.end >= new Date(reserva.end))
-                    );
-                });
-
-                if (isOverlapping) {
-                    alert('Este rango de tiempo ya está reservado.');
-                } else {
-                    const selectedDate = info.startStr.split('T')[0];
-                    const selectedTime = info.startStr.split('T')[1]?.slice(0, 5) || '00:00';
-                    fechaResInput.value = selectedDate;
-                    horaResInput.value = selectedTime;
-                }
-            },
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-        });
-
-        calendar.render(); // Renderizar el calendario
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        events: [], // Inicialmente vacío
+        select: function(info) {
+            const selectedDate = info.startStr.split('T')[0];
+            const selectedTime = info.startStr.split('T')[1]?.slice(0, 5) || '00:00';
+            fechaResInput.value = selectedDate;
+            horaResInput.value = selectedTime;
+        },
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        }
     });
+
+    // Función para cargar reservas del servidor
+    function loadReservations(escenarioId) {
+        fetch(`/reservas/eventos/${escenarioId}`)
+            .then(response => response.json())
+            .then(reservas => {
+                // Limpiar eventos previos
+                calendar.removeAllEvents();
+                
+                // Añadir los nuevos eventos
+                reservas.forEach(reserva => {
+                    calendar.addEvent({
+                        title: 'Reservado',
+                        start: `${reserva.fecha_res}T${reserva.hora_res}`,
+                        end: `${reserva.fecha_res}T${reserva.hora_fin}`,
+                        backgroundColor: 'red',
+                        borderColor: 'darkred',
+                    });
+                });
+            })
+            .catch(error => console.error('Error al cargar reservas:', error));
+    }
+
+    // Cargar reservas iniciales
+    loadReservations(escenarioSelect.value);
+
+    // Evento para cambiar el escenario
+    escenarioSelect.addEventListener('change', function() {
+        loadReservations(this.value);
+    });
+
+    calendar.render();
+});
+
 </script>
 
 

@@ -10,10 +10,28 @@ use Illuminate\Http\Request;
 class ReservaController extends Controller
 {
     public function index()
-    {
-        $reservas = Reserva::all();
-        return view('reservas.index', compact('reservas'));
+{
+    $usuario = auth()->user();
+
+    // Carga el rol del usuario
+    $usuarioRole = $usuario->role;
+
+    // Depura para ver el rol
+   
+
+    $reservas = Reserva::with(['user', 'escenarioDeportivo']);
+
+    // Asegúrate de que el rol no sea nulo y verifica el nombre del rol
+    if ($usuarioRole && $usuarioRole->nombre_rol === 'usuario') {
+        $reservas = $reservas->where('user_id', $usuario->id);
     }
+
+    $reservas = $reservas->get();
+
+    return view('reservas.index', compact('reservas'));
+}
+
+
 
     public function create()
 {
@@ -38,6 +56,21 @@ class ReservaController extends Controller
 }
 
 
+public function eventosPorEscenario($escenarioId)
+{
+    $reservas = Reserva::with('escenarioDeportivo')
+        ->where('id_esc', $escenarioId) // Filtrar por el ID del escenario
+        ->get()
+        ->map(function ($reserva) {
+            return [
+                'fecha_res' => $reserva->fecha_res->format('Y-m-d'),
+                'hora_res' => $reserva->fecha_res->format('H:i'),
+                'hora_fin' => $reserva->fecha_res->addHours(2)->format('H:i'),
+            ];
+        });
+
+    return response()->json($reservas);
+}
 
 
 

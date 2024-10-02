@@ -35,6 +35,7 @@
                     
                     <button type="submit" class="btn btn-primary">Actualizar Información</button>
                     <a href="{{ url('/') }}" class="btn btn-secondary">Cancelar</a>
+                    <a href="{{ route('reservas.index') }}" class="btn btn-secondary">Realizar Reserva</a>
                 </form>
             </div>
         </div>
